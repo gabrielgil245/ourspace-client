@@ -1,1 +1,13 @@
-<p>sign-up works!</p>
+
+<form class = "signUpContainer">
+<div>
+<input [(ngModel)]="_username" placeholder="Username" class = "userInput" name="user">
+<input [(ngModel)]="_password" placeholder="Password" class = "userInput" name="pass">
+<input [(ngModel)]="_first_name" placeholder="First Name" class = "userInput" name="first">
+<input [(ngModel)]="_last_name" placeholder="Last Name" class = "userInput" name="last">
+<input [(ngModel)]="_email" placeholder="Email Address" class = "userInput" name="email">
+<input [(ngModel)]="_birthday" placeholder="Birthday (Optional)" class = "userInput" name="birth">
+<textarea [(ngModel)]="_about_me" placeholder="About Me (Optional)" class = "userInput" id = "aboutMe" name="about"></textarea>
+<button id= "submitButton" (click) = "displayInfo()">Submit</button>
+</div>
+</form>
