@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignUpComponent,
     ResetPasswordComponent,
-    NewPasswordComponent,
-    NavbarComponent
+    ForgotPasswordComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
