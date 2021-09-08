@@ -15,10 +15,20 @@ export class SignUpComponent implements OnInit {
   _birthday: Date | undefined;
   _about_me: String | undefined;
   _profile_pic: String | undefined;
+  _imgURL: any;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  fileSelected(files: any){
+    var reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) =>{
+      this._imgURL = reader.result;
+    }
+
   }
 
   displayInfo(){

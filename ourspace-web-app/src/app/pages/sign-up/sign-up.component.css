@@ -16,14 +16,16 @@ body{
 }
 
 .userInput{
-    margin: 15px;
+    margin-left: 5%;
+    margin-top: 15px;
     display: block;
-    width: 200px;
+    width: 90%;
 }
 
 #aboutMe{
     height: 100px;
-    width: 200px;
+    width: 90%;
+    margin-left: 5%;
 }
 
 #submitButton{
@@ -31,9 +33,17 @@ body{
     width: 40%;
     border-radius: 3px;
     background-color:lightgrey;
+    margin-top: 15px;
 }
 
 #submitButton:hover{
     transition: 0.5s;
     background-color: darkgray;
+}
+
+#image{
+    margin-left: 35%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
 }
