@@ -18,9 +18,11 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(){
-    console.warn("here")
-    console.warn(this.resetPasswordForm.value)
-    console.warn(this.resetPasswordForm.value)
+    if(this.resetPasswordForm.value.password!==this.resetPasswordForm.value.confirmPassword){
+      alert("Passwords don't match.");
+    } else{
+
+    }
     
   }
 

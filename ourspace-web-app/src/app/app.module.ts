@@ -9,6 +9,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
