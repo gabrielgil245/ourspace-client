@@ -1,0 +1,62 @@
+
+#logo-container, #search-container, #navbarColor02 {
+ display: inline-flex;
+}
+
+#search-input{
+  width: 300px;
+  border-radius: 40px;
+}
+
+.nav-link {
+  font-size:large;
+  padding: 10px;
+  color:white;
+}
+
+svg {
+  margin-top: 8px;
+  margin-left: 10px
+}
+
+#search-svg{
+  cursor: pointer;
+}
+
+.navbar-brand {
+  font-size: xx-large;
+}
+
+@media only screen and (max-width: 480px) {
+
+  #nav-container{
+    display: block;
+    justify-content: space-evenly;
+  }
+
+  }
+
+  /* ================================
+     Tablet Styles: 481px and greater
+     ================================
+  */
+  @media only screen and (min-width: 481px) {
+
+    #nav-container{
+      display: block;
+      justify-content: space-evenly;
+    }
+
+  }
+
+  /* =================================
+   Desktop Styles: 769px and greater
+   =================================
+*/
+@media only screen and (min-width: 769px) {
+
+  #nav-container{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
