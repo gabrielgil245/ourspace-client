@@ -39,6 +39,6 @@ export class SignUpComponent implements OnInit {
     console.log(this._email);
     console.log(this._birthday);
     console.log(this._about_me);
-    
+
   }
 }
