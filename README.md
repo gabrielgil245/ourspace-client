@@ -59,6 +59,9 @@ in your team will most likely be using one db connection)
 - JUnit.
 - Javadoc (Documentation).
 
+## Schema Diagram
+![image](https://user-images.githubusercontent.com/65931708/132920736-aaaca3fd-6be2-4200-881d-dae84e8d70ed.png)
+
 ## Front-End
 ### TODOs (Action Taken)
 - Created login, forgot password, reset-password  and sign-up component page
