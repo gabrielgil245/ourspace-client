@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   _email: String = "";
   _birthday: Date | undefined;
   _about_me: String = "";
-  _imgURL: any = "";
+  _imgURL: any;
 
   constructor() { }
 
@@ -27,6 +27,16 @@ export class SignUpComponent implements OnInit {
     reader.onload = (_event) =>{
       this._imgURL = reader.result;
     }
+
+/*     fileSelected(imageInput: HTMLInputElement){
+      if(imageInput != null){
+      const file: File = imageInput.files[0];
+      const reader = new FileReader();
+      reader.addEventListener('load',(event:any) =>{
+        this._imgURL = event.target.result;
+      })
+    }
+    } */
 
   }
 
