@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,9 +13,8 @@ export class SignUpComponent implements OnInit {
   _last_name: String = "";
   _email: String = "";
   _birthday: Date | undefined;
-  _about_me: String | undefined;
-  _profile_pic: String | undefined;
-  _imgURL: any;
+  _about_me: String = "";
+  _imgURL: any = "";
 
   constructor() { }
 
@@ -39,6 +38,5 @@ export class SignUpComponent implements OnInit {
     console.log(this._email);
     console.log(this._birthday);
     console.log(this._about_me);
-    
   }
 }
