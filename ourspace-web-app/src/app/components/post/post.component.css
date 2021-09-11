@@ -1,0 +1,16 @@
+#dashboard-post-container{
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#post-container{
+  border: solid 1px;
+  border-radius: 20px;
+  margin:20px;
+  padding: 20px;
+  text-align: center;
+  width: 800px;
+  box-shadow: 0 0  20px  grey ;
+}
+
+
