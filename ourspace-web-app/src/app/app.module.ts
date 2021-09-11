@@ -10,6 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PostComponent } from './components/post/post.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ResetPasswordComponent,
     ForgotPasswordComponent,
     NavbarComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    DashboardComponent,
+    PostComponent
 
   ],
   imports: [
