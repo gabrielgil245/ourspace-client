@@ -10,7 +10,7 @@
 <textarea [(ngModel)]="_about_me" placeholder="About Me (Optional)" class = "userInput" id = "aboutMe" name="about"></textarea>
 <div class = "userInput">Select Profile Picture:</div>
 <img [src] = "_imgURL" id = image>
-<input #file type = "file" accept="image/*" class = "userInput" (change) = "fileSelected(file.Files)">
+<input #file type = "file" accept="image/*" class = "userInput" (change) = "fileSelected($event)">
 <button id= "submitButton" (click) = "displayInfo()">Submit</button>
 </div>
 </form>

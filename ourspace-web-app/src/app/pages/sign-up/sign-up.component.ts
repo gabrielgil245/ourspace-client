@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UploadFileService } from 'src/app/service/upload-file.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,38 +17,45 @@ export class SignUpComponent implements OnInit {
   _birthday: Date | undefined;
   _about_me: String = "";
   _imgURL: any;
+  _fileSrc: any;
+  selectedFile: any;
+  observer: Subscription = new Subscription;
 
-  constructor() { }
+  constructor(private uploadFileService:UploadFileService) { }
 
   ngOnInit(): void {
   }
 
-  fileSelected(files: any){
+  ngOnDestroy(): void{
+    this.observer.unsubscribe();
+  }
+
+/*   fileSelected(files: any){
     var reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) =>{
       this._imgURL = reader.result;
     }
-
-/*     fileSelected(imageInput: HTMLInputElement){
-      if(imageInput != null){
-      const file: File = imageInput.files[0];
-      const reader = new FileReader();
-      reader.addEventListener('load',(event:any) =>{
-        this._imgURL = event.target.result;
-      })
+  } */
+    fileSelected(event:any){  
+      this.selectedFile = event.target.files[0];
+      var reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    this._imgURL = reader.result;
     }
-    } */
-
-  }
+    
 
   displayInfo(){
-    console.log(this._username);
+    this.uploadFileService.uploadFile(this.selectedFile);
+    
+/*     console.log(this._username);
     console.log(this._password);
     console.log(this._first_name);
     console.log(this._last_name);
     console.log(this._email);
     console.log(this._birthday);
-    console.log(this._about_me);
+    console.log(this._about_me); */
   }
 }
+
+
