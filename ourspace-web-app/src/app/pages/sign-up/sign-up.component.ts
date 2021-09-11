@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UploadFileService } from 'src/app/service/upload-file.service';
+import { UploadFileService } from 'src/app/services/upload-file/upload-file.service';
 
 @Component({
   selector: 'app-sign-up',
