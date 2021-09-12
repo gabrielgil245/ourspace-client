@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/services/upload-file/upload-file.service';
-import { NewUser } from 'src/app/models/NewUser'
-import { CreateNewUserService } from 'src/app/services/create-new-user/create-new-user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,54 +15,35 @@ export class SignUpComponent implements OnInit {
   _first_name: string = "";
   _last_name: string = "";
   _email: string = "";
-  _birthday: string = "";
+  _birthday: Date | undefined;
   _about_me: string = "";
   _imgURL: any;
   _fileSrc: any;
   selectedFile: any;
   added_pic:boolean = false;
 
-
-  constructor(private uploadFileService:UploadFileService, private createNewUserService:CreateNewUserService) { }
+  constructor(private uploadFileService:UploadFileService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  @Input()
-  newUser: NewUser = {
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    birthday: "",
-    aboutMe: ""
-  }
 
-    fileSelected(event:any){  
-      this.added_pic = true;
+
+    fileSelected(event:any){
       this.selectedFile = event.target.files[0];
       var reader = new FileReader();
-      reader.readAsDataURL(this.selectedFile);
-      reader.onload = (_event) =>{
-        this._imgURL = reader.result;
-      }
-      }
-    
+    reader.readAsDataURL(this.selectedFile);
+    this._imgURL = reader.result;
+    }
+
+
 
   submit(){
- /*      this.newUser.username = this._username;
-      this.newUser.password = this._password;
-      this.newUser.firstName = this._first_name;
-      this.newUser.lastName = this._last_name;
-      this.newUser.email = this._email;
-      this.newUser.birthday = this._birthday;
-      this.newUser.aboutMe = this._about_me;
-      this.createNewUserService.createNewUser(this.newUser); */
-      this.createNewUserService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me)
-
+    this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me).subscribe((data: any) => {
+      console.log(data);
+    })
     if(this.added_pic){
-    this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
     }
   }
 }

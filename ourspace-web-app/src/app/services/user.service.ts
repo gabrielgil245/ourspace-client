@@ -26,6 +26,16 @@ export class UserService {
     return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/logout", {withCredentials: true});
   }
 
-
+  createNew(username:string, password:string, firstName:string, lastName: string, email:string, birthday:any, aboutMe:string){
+    return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/user", {
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      birthday: birthday,
+      aboutMe: aboutMe
+    }, {withCredentials: true});
+  }
 
 }
