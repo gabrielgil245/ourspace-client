@@ -11,6 +11,6 @@
 <div class = "userInput">Select Profile Picture:</div>
 <img [src] = "_imgURL" id = image>
 <input #file type = "file" accept="image/*" class = "userInput" (change) = "fileSelected($event)">
-<button id= "submitButton" (click) = "displayInfo()">Submit</button>
+<button id= "submitButton" (click) = "submit()">Submit</button>
 </div>
 </form>

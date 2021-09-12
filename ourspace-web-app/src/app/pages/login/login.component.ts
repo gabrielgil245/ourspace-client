@@ -17,19 +17,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.checkSession().subscribe(data => {
+      console.log(data)
       if (data.success){
-        this._userId = data.data.userId;
-        console.log(this._userId);
         window.location.href = `${this.generic._localClientDomain}/dashboard`
-      } else {
-        window.location.href = `${this.generic._localClientDomain}`
       }
     })
   }
 
   userLogin(){
-
-
 
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data);
