@@ -1,11 +1,11 @@
 
 
-export interface Pokemon{
+export interface NewUser{
     username: string,
     password: string,
-    first_name: string,
-    last_name: string,
+    firstName: string,
+    lastName: string,
     email: string,
-    birthday: Date,
-    about_me: string;
+    birthday: Number,
+    aboutMe: string;
 }
