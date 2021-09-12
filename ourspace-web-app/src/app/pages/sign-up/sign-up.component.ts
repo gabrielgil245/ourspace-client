@@ -19,16 +19,14 @@ export class SignUpComponent implements OnInit {
   _imgURL: any;
   _fileSrc: any;
   selectedFile: any;
-  observer: Subscription = new Subscription;
+  added_pic:boolean = false;
+
 
   constructor(private uploadFileService:UploadFileService) { }
 
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void{
-    this.observer.unsubscribe();
-  }
 
 /*   fileSelected(files: any){
     var reader = new FileReader();
@@ -38,15 +36,23 @@ export class SignUpComponent implements OnInit {
     }
   } */
     fileSelected(event:any){  
+      this.added_pic = true;
       this.selectedFile = event.target.files[0];
       var reader = new FileReader();
-    reader.readAsDataURL(this.selectedFile);
-    this._imgURL = reader.result;
-    }
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = (_event) =>{
+        this._imgURL = reader.result;
+      }
+      }
     
 
-  displayInfo(){
-    this.uploadFileService.uploadFile(this.selectedFile);
+  submit(){
+
+
+    if(this.added_pic){
+      console.log("testing if statement")
+    this.uploadFileService.uploadFile('http://localhost:9000/api/signup/pic',this.selectedFile);
+    }
     
 /*     console.log(this._username);
     console.log(this._password);
