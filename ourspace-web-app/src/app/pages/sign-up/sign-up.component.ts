@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   _first_name: string = "";
   _last_name: string = "";
   _email: string = "";
-  _birthday: Number = 0;
+  _birthday: string = "";
   _about_me: string = "";
   _imgURL: any;
   _fileSrc: any;
@@ -36,17 +36,10 @@ export class SignUpComponent implements OnInit {
     firstName: "",
     lastName: "",
     email: "",
-    birthday: 0,
+    birthday: "",
     aboutMe: ""
   }
 
-/*   fileSelected(files: any){
-    var reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) =>{
-      this._imgURL = reader.result;
-    }
-  } */
     fileSelected(event:any){  
       this.added_pic = true;
       this.selectedFile = event.target.files[0];
@@ -59,26 +52,19 @@ export class SignUpComponent implements OnInit {
     
 
   submit(){
-      this.newUser.username = this._username;
+ /*      this.newUser.username = this._username;
       this.newUser.password = this._password;
       this.newUser.firstName = this._first_name;
       this.newUser.lastName = this._last_name;
       this.newUser.email = this._email;
       this.newUser.birthday = this._birthday;
       this.newUser.aboutMe = this._about_me;
-      this.createNewUserService.createNewUser(this.newUser);
+      this.createNewUserService.createNewUser(this.newUser); */
+      this.createNewUserService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me)
 
     if(this.added_pic){
     this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
     }
-    
-/*     console.log(this._username);
-    console.log(this._password);
-    console.log(this._first_name);
-    console.log(this._last_name);
-    console.log(this._email);
-    console.log(this._birthday);
-    console.log(this._about_me); */
   }
 }
 

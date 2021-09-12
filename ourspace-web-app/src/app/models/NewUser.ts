@@ -6,6 +6,6 @@ export interface NewUser{
     firstName: string,
     lastName: string,
     email: string,
-    birthday: Number,
+    birthday: string,
     aboutMe: string;
 }

@@ -7,11 +7,11 @@ import { NewUser } from 'src/app/models/NewUser';
 })
 export class CreateNewUserService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpCli: HttpClient) { }
+
 
   createNewUser(newUser: NewUser){
-    console.log(newUser);
-    this.httpClient.post<any>('http://localhost:9000/ourspaceserver/api/user', {
+    return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/user", {
       username: newUser.username,
       password: newUser.password,
       firstName: newUser.firstName,
@@ -19,6 +19,18 @@ export class CreateNewUserService {
       email: newUser.email,
       birthday: newUser.birthday,
       aboutMe: newUser.aboutMe
+    }, {withCredentials: true});
+  }
+
+  createNew(username:string, password:string, firstName:string, lastName: string, email:string, birthday:string, aboutMe:string){
+    return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/user", {
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      birthday: birthday,
+      aboutMe: aboutMe
     }, {withCredentials: true});
   }
 }
