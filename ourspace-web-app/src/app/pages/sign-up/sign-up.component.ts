@@ -32,8 +32,10 @@ export class SignUpComponent implements OnInit {
     fileSelected(event:any){
       this.selectedFile = event.target.files[0];
       var reader = new FileReader();
-    reader.readAsDataURL(this.selectedFile);
-    this._imgURL = reader.result;
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = (_event) =>{
+        this._imgURL = reader.result;
+    }
     }
 
 
