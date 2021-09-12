@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/services/upload-file/upload-file.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,8 +22,9 @@ export class SignUpComponent implements OnInit {
   _fileSrc: any;
   selectedFile: any;
   added_pic:boolean = false;
+  success:boolean = false;
 
-  constructor(private uploadFileService:UploadFileService, private userService: UserService) { }
+  constructor(private uploadFileService:UploadFileService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +32,7 @@ export class SignUpComponent implements OnInit {
 
 
     fileSelected(event:any){
+      this.added_pic = true;
       this.selectedFile = event.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(this.selectedFile);
@@ -42,12 +45,17 @@ export class SignUpComponent implements OnInit {
 
   submit(){
     this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me).subscribe((data: any) => {
+      this.success = data.success;
       console.log(data);
     })
-    if(this.added_pic){
-      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
-    }
+      if(this.added_pic){
+        this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+      }
+        this.router.navigate([`/`]);
+    
   }
+  
+ 
 }
 
 

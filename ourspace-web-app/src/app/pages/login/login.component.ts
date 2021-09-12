@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   _password: string = "";
   _userId: number = 0;
 
-  constructor(private userService: UserService, private generic: GenericService) { }
+  constructor(private userService: UserService, private generic: GenericService, private router:Router) { }
 
   ngOnInit(): void {
     this.userService.checkSession().subscribe(data => {
@@ -35,5 +36,9 @@ export class LoginComponent implements OnInit {
         window.location.href = `${this.generic._localClientDomain}/dashboard`
       }
     })
+  }
+
+  signupPage(){
+    this.router.navigate([`/signup`]);
   }
 }
