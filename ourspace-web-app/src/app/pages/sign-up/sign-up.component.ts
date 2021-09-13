@@ -22,6 +22,7 @@ export class SignUpComponent implements OnInit {
   selectedFile: any;
   added_pic:boolean = false;
   success:boolean = false;
+  profilePic: string = "";
 
   constructor(private uploadFileService:UploadFileService, private userService: UserService, private router: Router) { }
 
@@ -43,11 +44,17 @@ export class SignUpComponent implements OnInit {
 
 
   submit(){
+    if(!this.added_pic)
     this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me).subscribe((data: any) => {
       this.success = data.success;
       console.log(data);
     })
-      if(this.added_pic){
+      else if(this.added_pic){
+        this.profilePic = "https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/" + this._username + ".PNG"
+        this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
+          this.success = data.success;
+          console.log(data);
+        })
         this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
       }
         this.router.navigate([`/`]);

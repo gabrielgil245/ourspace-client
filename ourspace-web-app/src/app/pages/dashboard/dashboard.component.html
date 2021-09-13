@@ -1,1 +1,6 @@
-<app-post></app-post>
+<app-post [_pageNumber] = "pageNumber"></app-post>
+<div class = "pageNumber">
+    <button *ngIf = "pageNumber > 1" (click) = "backPage()">Back</button>
+    <input [(ngModel)] = "pageNumber" type="text" >
+    <button (click) = "nextPage()">Forward</button>
+</div>

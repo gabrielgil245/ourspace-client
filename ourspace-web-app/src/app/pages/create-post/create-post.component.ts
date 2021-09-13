@@ -27,6 +27,7 @@ export class CreatePostComponent implements OnInit {
   imageName : string = "";
   totalPosts: number = 0;
   total: number |undefined;
+  imagePath:string = "";
 
   ngOnInit(): void {
     this.observer = this.userServices.checkSession().subscribe(inSession =>{
@@ -54,15 +55,24 @@ export class CreatePostComponent implements OnInit {
 
   submit(){
     this.getUserAmt()
-    console.log(this.totalPosts)
-      this.imageName = this.user.username + (this.totalPosts + 1);
-      console.log(this.imageName)
+    if(!this.added_pic){
+      console.log("are you entering this if statement")
+      this.imageName = "";
     this.createPostService.createPost(this._post_text_content, this.user, this.imageName).subscribe((data: any) => {
         console.log(data);
       }) 
-     if(this.added_pic){
-      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imageName);
+      
+    }
+     else{
+       console.log("are you entering this else statement")
+      this.imageName = this.user.username + (this.totalPosts + 1);
+      this.createPostService.createPost(this._post_text_content, this.user, this.imageName).subscribe((data: any) => {
+          console.log(data);
+        }) 
+      }
+      this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
+      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imagePath);
     }  
   }
 
-}
+
