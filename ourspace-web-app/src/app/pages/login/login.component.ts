@@ -32,11 +32,8 @@ export class LoginComponent implements OnInit {
 
   userLogin(){
     this.userService.userLogin(this._username, this._password).subscribe(data => {
-      console.log(data);
-
       if (data.success){
         this._userId = data.data.userId;
-        console.log(this._userId);
         this.router.navigate([`/dashboard/`]);
       } else {
         if (this._password == ""){
@@ -65,9 +62,7 @@ export class LoginComponent implements OnInit {
       users.data.forEach(((user: any) => {
         if (user.username == this._username){
           this._isFound = true;
-          console.log("FOUND")
         }
-        console.log(this._isFound)
         if(!this._isFound){
           this._invalidUsernameMessage = "Username not found!";
         }
