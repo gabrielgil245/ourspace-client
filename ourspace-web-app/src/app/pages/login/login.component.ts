@@ -20,20 +20,19 @@ export class LoginComponent implements OnInit {
     this.userService.checkSession().subscribe(data => {
       console.log(data)
       if (data.success){
-        window.location.href = `${this.generic._localClientDomain}/dashboard`
+        this.router.navigate([`/dashboard`]);
       }
     })
   }
 
   userLogin(){
-
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data);
 
       if (data.success){
         this._userId = data.data.userId;
         console.log(this._userId);
-        window.location.href = `${this.generic._localClientDomain}/dashboard`
+        this.router.navigate([`/dashboard/`]);
       }
     })
   }
