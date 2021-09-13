@@ -18,8 +18,10 @@ export class ForgotPasswordComponent implements OnInit {
     //email in Database
     let _existingEmail: string = "testuser123@test.com";
     console.log(this._emailInput);
+    //HTTP request to check if the email inputted exists in the database
     if (this._emailInput == _existingEmail) {
-      console.log("HTTP Request was conducted!");
+      //HTTP request to have an email sent to the user.
+      alert("An email was sent to the email address associated with your username!");
       this._emailInput = "";
     } else {
       console.log("The email entered does not exist in our database.");

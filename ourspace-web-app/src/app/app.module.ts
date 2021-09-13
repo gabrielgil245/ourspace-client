@@ -13,6 +13,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PostComponent } from './components/post/post.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
     UserInfoComponent,
     DashboardComponent,
     PostComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    UserProfileComponent
 
   ],
   imports: [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,15 +10,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private userService: UserService, private generic: GenericService) { }
+  constructor(private userService: UserService, private generic: GenericService, private router: Router) { }
 
   ngOnInit(): void {
 /*       this.userService.checkSession().subscribe(data => {
       console.log(data)
       if (data.success){
-        window.location.href = `${this.generic._localClientDomain}/dashboard`
+        this.router.navigate([`/dashboard`]);
       } else {
-        window.location.href = `${this.generic._localClientDomain}/`
+        this.router.navigate([``]);
       }
     })  */ 
   }
