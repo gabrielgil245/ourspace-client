@@ -31,7 +31,7 @@ export class SignUpComponent implements OnInit {
 
 
 
-    fileSelected(event:any){
+    fileSelected(event:any){ /* displays preview of image */
       this.added_pic = true;
       this.selectedFile = event.target.files[0];
       var reader = new FileReader();
@@ -44,12 +44,12 @@ export class SignUpComponent implements OnInit {
 
 
   submit(){
-    if(!this.added_pic)
+    if(!this.added_pic) /* if user chooses not to include a profile pic, imagelink is not included */
     this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me).subscribe((data: any) => {
       this.success = data.success;
       console.log(data);
     })
-      else if(this.added_pic){
+      else if(this.added_pic){ /* If they include a profile pic, includes the link */
         this.profilePic = "https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/" + this._username + ".PNG"
         this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
           this.success = data.success;

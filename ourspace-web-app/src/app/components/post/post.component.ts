@@ -11,7 +11,6 @@ import { GetAllPostsByPageService } from 'src/app/services/get-all-posts-by-page
 })
 export class PostComponent implements OnInit {
 
-  _imagePostPath: string;
   _imageProfilePath: string;
   post: any = {};
 
@@ -21,21 +20,19 @@ export class PostComponent implements OnInit {
   _pageNumber: number = 1;
 
   constructor(private getAllPostsByPage: GetAllPostsByPageService) {
-    this._imagePostPath = "https://picsum.photos/500/300";
     this._imageProfilePath = "https://picsum.photos/50/50";
   }
 
   ngOnInit(): void {
     this.observer = this.getAllPostsByPage.getPosts(this._pageNumber).subscribe(data =>{
       this.post = data;
-    })
-    setTimeout(() => {console.log(this.post)}, 3000);
+    }) /* gets the post based on page number */
   }
 
   
 
   posts(): Array<Post> {
-    return this.post.data;
+    return this.post.data; /* returns the array of posts retrieved onInit() */
   }
 
 }
