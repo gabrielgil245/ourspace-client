@@ -1,0 +1,9 @@
+<form class = "signUpContainer">
+    <div>
+    <textarea [(ngModel)]="_post_text_content" placeholder="Post Content" class = "userInput" id = "textContent" name="text"></textarea>
+    <div class = "userInput">Select Picture (Optional)</div>
+    <img [src] = "_imgURL" id = image>
+    <input #file type = "file" accept="image/*" class = "userInput" (change) = "fileSelected($event)">
+    <button id= "submitButton" (click) = "submit()">Submit</button>
+    </div>
+    </form>

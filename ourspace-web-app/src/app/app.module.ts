@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PostComponent } from './components/post/post.component';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
@@ -26,6 +27,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     UserInfoComponent,
     DashboardComponent,
     PostComponent,
+    CreatePostComponent,
     UserProfileComponent
 
   ],

@@ -10,11 +10,10 @@ export class UploadFileService {
 
   constructor(private httpClient: HttpClient) {  }
 
-    // file from event.target.files[0]
     uploadFile(url:any, selectedFile: any, username: string): void {
       const uploadImageData = new FormData();
           uploadImageData.append('imageFile', selectedFile, username + ".PNG");
-          //Make a call to the Spring Boot Application to save the image
+
           this.httpClient.post(url, uploadImageData, { observe: 'response' })
             .subscribe((response) => {
               if (response.status === 200) {
