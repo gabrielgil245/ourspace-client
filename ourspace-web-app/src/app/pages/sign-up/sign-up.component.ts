@@ -19,7 +19,6 @@ export class SignUpComponent implements OnInit {
   _birthday: Date | undefined;
   _about_me: string = "";
   _imgURL: any;
-  _fileSrc: any;
   selectedFile: any;
   added_pic:boolean = false;
   success:boolean = false;

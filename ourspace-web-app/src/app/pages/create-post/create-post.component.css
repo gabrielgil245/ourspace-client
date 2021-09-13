@@ -1,0 +1,44 @@
+body{
+    background-color: lightskyblue;
+}
+
+.signUpContainer{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(81, 168, 223);
+    border: gray;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px;
+    margin-left:37.5%;
+    padding: 20px;
+}
+
+.userInput{
+    margin-left: 5%;
+    margin-top: 15px;
+    display: block;
+    width: 90%;
+}
+
+
+#submitButton{
+    margin-left: 30%;
+    width: 40%;
+    border-radius: 3px;
+    background-color:lightgrey;
+    margin-top: 15px;
+}
+
+#submitButton:hover{
+    transition: 0.5s;
+    background-color: darkgray;
+}
+
+#image{
+    margin-left: 35%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}

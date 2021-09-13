@@ -12,6 +12,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PostComponent } from './components/post/post.component';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PostComponent } from './components/post/post.component';
     NavbarComponent,
     UserInfoComponent,
     DashboardComponent,
-    PostComponent
+    PostComponent,
+    CreatePostComponent
 
   ],
   imports: [
