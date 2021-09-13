@@ -39,7 +39,11 @@ export class LoginComponent implements OnInit {
         console.log(this._userId);
         this.router.navigate([`/dashboard/`]);
       } else {
-        this.checkPassword();
+        if (this._password == ""){
+          this.checkPassword();
+        } else {
+          this._invalidPasswordMessage = "Invalid password";
+        }
       }
     })
 
@@ -47,10 +51,12 @@ export class LoginComponent implements OnInit {
 
   removeUsername(){
     this._invalidUsernameMessage = "";
+    this._username = "";
   }
 
   removePassword(){
     this._invalidPasswordMessage = "";
+    this._password = "";
   }
 
   checkUsername(){
@@ -64,8 +70,6 @@ export class LoginComponent implements OnInit {
         console.log(this._isFound)
         if(!this._isFound){
           this._invalidUsernameMessage = "Username not found!";
-        } else {
-          this.removeUsername();
         }
       })
 
@@ -75,10 +79,7 @@ export class LoginComponent implements OnInit {
   checkPassword(){
     if (this._password == ""){
       this._invalidPasswordMessage = "Password is empty";
-    } else {
-      this._invalidPasswordMessage = "Invalid password";
     }
-
   }
 
   signupPage(){
