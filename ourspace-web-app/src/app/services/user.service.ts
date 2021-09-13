@@ -17,6 +17,9 @@ export class UserService {
     }, {withCredentials: true});
   }
 
+  getListOfUser(){
+    return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/user", {withCredentials: true});
+  }
 
   checkSession(){
     return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/check-session", {withCredentials: true});

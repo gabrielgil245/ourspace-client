@@ -12,6 +12,11 @@ export class LoginComponent implements OnInit {
   _username: string = "";
   _password: string = "";
   _userId: number = 0;
+  _isInvalidUsername: boolean = false;
+  _isInvalidPassword: boolean = false;
+  _invalidUsernameMessage: string = "";
+  _invalidPasswordMessage: string = "";
+  _isFound: boolean = false;
 
   constructor(private userService: UserService, private generic: GenericService) { }
 
@@ -25,7 +30,6 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin(){
-
     this.userService.userLogin(this._username, this._password).subscribe(data => {
       console.log(data);
 
@@ -33,7 +37,46 @@ export class LoginComponent implements OnInit {
         this._userId = data.data.userId;
         console.log(this._userId);
         window.location.href = `${this.generic._localClientDomain}/dashboard`
+      } else {
+        this.checkPassword();
       }
     })
+
+  }
+
+  removeUsername(){
+    this._invalidUsernameMessage = "";
+  }
+
+  removePassword(){
+    this._invalidPasswordMessage = "";
+  }
+
+  checkUsername(){
+    this.userService.getListOfUser().subscribe((users: any) => {
+      this._isFound = false;
+      users.data.forEach(((user: any) => {
+        if (user.username == this._username){
+          this._isFound = true;
+          console.log("FOUND")
+        }
+        console.log(this._isFound)
+        if(!this._isFound){
+          this._invalidUsernameMessage = "Username not found!";
+        } else {
+          this.removeUsername();
+        }
+      })
+
+    )})
+  }
+
+  checkPassword(){
+    if (this._password == ""){
+      this._invalidPasswordMessage = "Password is empty";
+    } else {
+      this._invalidPasswordMessage = "Invalid password";
+    }
+
   }
 }
