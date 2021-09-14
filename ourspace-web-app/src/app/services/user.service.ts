@@ -42,4 +42,12 @@ export class UserService {
     }, {withCredentials: true});
   }
 
+
+  resetPassword(password: string){
+    return this.httpCli.patch<any>("http://localhost:9000/ourspaceserver/api/reset-password",{
+      password: password }, {withCredentials: true});
+  }
+
+
+
 }
