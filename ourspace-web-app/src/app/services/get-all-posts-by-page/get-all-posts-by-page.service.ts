@@ -9,7 +9,6 @@ export class GetAllPostsByPageService {
   constructor(private httpCli: HttpClient) { }
 
 getPosts(pageNumber: number){
-  console.log(pageNumber)
-  return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/?pg=${pageNumber}`, {withCredentials: true});
+  return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/?pageNumber=${pageNumber}`, {withCredentials: true});
 }
 }

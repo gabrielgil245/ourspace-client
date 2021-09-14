@@ -53,6 +53,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   submit(){
+    console.log(this.added_pic);
     this.getUserAmt()
     if(!this.added_pic){ /* if no image provided, send the database no link for "postPic" */
       this.imageName = "";
@@ -62,12 +63,13 @@ export class CreatePostComponent implements OnInit {
     }
      else{ /* if image provided, sends the link to database */
       this.imageName = this.user.username + (this.totalPosts + 1);
-      this.createPostService.createPost(this._post_text_content, this.user, this.imageName).subscribe((data: any) => {
+      this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
+      this.createPostService.createPost(this._post_text_content, this.user, this.imagePath).subscribe((data: any) => {
           console.log(data);
         }) 
-      }
       this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
-      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imagePath);
+      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imageName);
+     }
     }  
   }
 
