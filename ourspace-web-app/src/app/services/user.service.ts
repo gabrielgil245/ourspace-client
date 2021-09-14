@@ -29,7 +29,7 @@ export class UserService {
     return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/logout", {withCredentials: true});
   }
 
-  createNew(username:string, password:string, firstName:string, lastName: string, email:string, birthday:any, aboutMe:string){
+  createNew(username:string, password:string, firstName:string, lastName: string, email:string, birthday:any, aboutMe:string, profilePic?:string){
     return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/user", {
       username: username,
       password: password,
@@ -37,8 +37,17 @@ export class UserService {
       lastName: lastName,
       email: email,
       birthday: birthday,
-      aboutMe: aboutMe
+      aboutMe: aboutMe,
+      profilePic: profilePic
     }, {withCredentials: true});
   }
+
+
+  resetPassword(password: string){
+    return this.httpCli.patch<any>("http://localhost:9000/ourspaceserver/api/reset-password",{
+      password: password }, {withCredentials: true});
+  }
+
+
 
 }

@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private userService: UserService, private generic: GenericService, private router: Router) { }
 
+  pageNumber:number=1;
+
   ngOnInit(): void {
        this.userService.checkSession().subscribe(data => {
       console.log(data)
@@ -21,6 +23,14 @@ export class DashboardComponent implements OnInit {
         this.router.navigate([``]);
       }
     })   
+  }
+
+  nextPage(){
+    this.pageNumber+=1;
+  }
+
+  backPage(){
+    this.pageNumber-=1;
   }
 
 

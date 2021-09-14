@@ -13,8 +13,6 @@ export class LoginComponent implements OnInit {
   _username: string = "";
   _password: string = "";
   _userId: number = 0;
-  _isInvalidUsername: boolean = false;
-  _isInvalidPassword: boolean = false;
   _invalidUsernameMessage: string = "";
   _invalidPasswordMessage: string = "";
   _isFound: boolean = false;
@@ -62,6 +60,7 @@ export class LoginComponent implements OnInit {
       users.data.forEach(((user: any) => {
         if (user.username == this._username){
           this._isFound = true;
+          this._invalidUsernameMessage = "";
         }
         if(!this._isFound){
           this._invalidUsernameMessage = "Username not found!";

@@ -22,20 +22,18 @@ user : NewUser = {
 
 
   _imagePath: string = "";
-  _name: string;
+  @Input()
+  _name: string = "";
+
   observer: Subscription = new Subscription;
   
   constructor(private userServices : UserService) {
 
     //this._imagePath = `https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/${this.user.username}.PNG`
-    this._name = "placeholder name, replace with User's name when backend implemented"
+   
    }
 
   ngOnInit(): void {
-    this.observer = this.userServices.checkSession().subscribe(inSession =>{
-      console.log(inSession);
-      
-    })
 
   }
 

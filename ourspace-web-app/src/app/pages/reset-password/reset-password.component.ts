@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { GenericService } from 'src/app/services/generic.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -7,23 +9,61 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-  resetPasswordForm = new FormGroup({
-    password: new FormControl('',Validators.required),
-    confirmPassword: new FormControl('', Validators.required)
-  });
 
-  constructor() { }
+  _username: string = "";
+  _password: string = "";
+  _confirmPassword: string = "";
+  _passwordNotMatchMessage: string = "";
+
+  constructor(private userService: UserService, private generic: GenericService, private router:Router) { }
 
   ngOnInit(): void {
+    this.userService.checkSession().subscribe(data => {
+      console.log(data)
+      if (!data.success){
+        this.router.navigate([`/`]);
+      } else {
+        this._username = data.data.username;
+      }
+    })
   }
 
-  onSubmit(){
-    if(this.resetPasswordForm.value.password!==this.resetPasswordForm.value.confirmPassword){
-      alert("Passwords don't match.");
-    } else{
+  resetPassword(){
+    this.userService.checkSession().subscribe(data => {
+      console.log(data)
+      if (data.success){
+        if (this._password == this._confirmPassword && this._confirmPassword != "" ){
+          this.userService.resetPassword(this._password).subscribe(user => {
+            if (user.success){
+              alert(user.message);
+              this.router.navigate([`/dashboard`]);
+            }
+          })
+        }
+      }
+    })
+  }
 
+  checkPassword(){
+    this.userService.userLogin(this._username, this._password).subscribe(data => {
+      if (data.success){
+        this._passwordNotMatchMessage = "Password must not be the same as previous.";
+      } else {
+        this._passwordNotMatchMessage = "";
+      }
+    })
+  }
+
+  checkPasswordMatch(){
+    if (this._password != this._confirmPassword){
+      this._passwordNotMatchMessage = "Password not matched.";
+    } else {
+      this._passwordNotMatchMessage = "";
     }
-    
   }
 
+  emptyField(){
+    this._password = "";
+    this._confirmPassword = "";
+  }
 }
