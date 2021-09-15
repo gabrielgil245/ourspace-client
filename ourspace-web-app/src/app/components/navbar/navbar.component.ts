@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,12 +11,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  _classDisplay: string = "";
+  _classDisplay: string = "d-none";
 
   constructor(private httpCli: HttpClient,
               private userService: UserService,
               private generic: GenericService,
               private router: Router ) { }
+
 
   ngOnInit(): void {
     this.userService.checkSession().subscribe(data => {
@@ -24,9 +25,13 @@ export class NavbarComponent implements OnInit {
       if (!data.success){
         //Add attribute binding to add a class name invisible to hide the menu buttons if no session found
         this._classDisplay = "d-none"
-      } else {
-        // If session found display the buttons
+      }
+    })
+    this.router.events.subscribe(data =>{
+      if(data instanceof NavigationStart){
+        if(data.url == ("/dashboard" || "/create-post" || "/user-profile")){
         this._classDisplay = "d-flex mt-3"
+        }
       }
     })
   }
