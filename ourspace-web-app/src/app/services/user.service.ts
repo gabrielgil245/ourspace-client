@@ -21,6 +21,10 @@ export class UserService {
     return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/user", {withCredentials: true});
   }
 
+  getUserByEmail(email: string){
+    return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/user/"+ email, {withCredentials: true});
+  }
+
   checkSession(){
     return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/check-session", {withCredentials: true});
   }
@@ -43,11 +47,16 @@ export class UserService {
   }
 
 
-  resetPassword(password: string){
+  resetPassword(email: string, password: string){
     return this.httpCli.patch<any>("http://localhost:9000/ourspaceserver/api/reset-password",{
-      password: password }, {withCredentials: true});
+      email: email,
+      password: password
+    }, {withCredentials: true});
   }
 
+  forgotPassword(email: string){
+    return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/forgot-password/"+ email, {withCredentials: true});
+  }
 
 
 }
