@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { GenericService } from 'src/app/services/generic.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,20 +10,37 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  _username: string = "";
+  _email: any;
+  _username: any;
   _password: string = "";
   _confirmPassword: string = "";
   _passwordNotMatchMessage: string = "";
 
-  constructor(private userService: UserService, private generic: GenericService, private router:Router) { }
+  constructor(private userService: UserService, private generic: GenericService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userService.checkSession().subscribe(data => {
-      console.log(data)
-      if (!data.success){
-        this.router.navigate([`/`]);
+    this.route.paramMap.subscribe(param => {
+      if (param.get('email') != ""){
+        this.userService.checkSession().subscribe(data => {
+          if (data.success){
+            this._username = data.data.username;
+            this._email = data.data.email;
+            console.log(this._username)
+            console.log(this._email)
+          } else {
+            this.route.paramMap.subscribe(param => {
+              this._email = param.get('email');
+              this.userService.getUserByEmail(this._email).subscribe(user => {
+                if (user.success){
+                  this._username =  user.data.username;
+                }
+              })
+            })
+          }
+        })
       } else {
-        this._username = data.data.username;
+        alert("Page Not Found")
+        this.router.navigate([``]);
       }
     })
   }
@@ -33,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
       console.log(data)
       if (data.success){
         if (this._password == this._confirmPassword && this._confirmPassword != "" ){
-          this.userService.resetPassword(this._password).subscribe(user => {
+          this.userService.resetPassword(this._email, this._password).subscribe(user => {
             if (user.success){
               alert(user.message);
               this.router.navigate([`/dashboard`]);
@@ -43,6 +60,7 @@ export class ResetPasswordComponent implements OnInit {
       }
     })
   }
+
 
   checkPassword(){
     this.userService.userLogin(this._username, this._password).subscribe(data => {
