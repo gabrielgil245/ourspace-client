@@ -1,7 +1,7 @@
   <div id="dashboard-post-container">
     <div *ngFor="let post of posts()" id="post-container"> <!-- cycling through posts returned by posts(), only 20 -->
       <div id="profile-photo-container">
-        <app-user-info [_name] = "post.user.username"></app-user-info> <!-- sends the username of the person who made the post to the user-info component -->
+        <app-user-info [user] = "post.user"></app-user-info> <!-- sends the username of the person who made the post to the user-info component -->
       </div>
       <div class="text-muted">
         <p>{{post.postDescription}}</p> <!-- getting text of post from variable in for loop -->

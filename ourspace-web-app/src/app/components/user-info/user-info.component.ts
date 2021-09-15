@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { NewUser } from 'src/app/models/NewUser'
+import { User } from 'src/app/models/User'
 import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-user-info',
@@ -10,19 +11,20 @@ import { Subscription } from 'rxjs';
 })
 export class UserInfoComponent implements OnInit {
 @Input()
-user : NewUser = {
+user : User = {
   username: "",
   password: "",
   firstName: "",
   lastName: "",
   email: "",
   birthday: "",
-  aboutMe: ""
+  aboutMe: "",
+  profilePic: "",
+  userId: 0
 }
 
 
   _imagePath: string = "";
-  @Input()
   _name: string = "";
 
   observer: Subscription = new Subscription;
@@ -34,7 +36,9 @@ user : NewUser = {
    }
 
   ngOnInit(): void {
-
+    console.log(this.user);
+    this._name = this.user.username;
+    this._imagePath= this.user.profilePic;
   }
 
 
