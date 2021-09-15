@@ -15,14 +15,14 @@ export class DashboardComponent implements OnInit {
   pageNumber:number=1;
 
   ngOnInit(): void {
-       this.userService.checkSession().subscribe(data => {
+    this.userService.checkSession().subscribe(data => {
       console.log(data)
       if (data.success){
         this.router.navigate([`/dashboard`]);
       } else {
         this.router.navigate([``]);
       }
-    })   
+    })
   }
 
   nextPage(){
