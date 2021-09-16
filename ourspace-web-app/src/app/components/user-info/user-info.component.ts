@@ -36,7 +36,6 @@ user : User = {
    }
 
   ngOnInit(): void {
-    console.log(this.user);
     this._name = this.user.username;
     this._imagePath= this.user.profilePic;
   }

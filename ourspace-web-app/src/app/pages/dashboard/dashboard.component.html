@@ -1,4 +1,4 @@
-<app-post [_pageNumber] = "pageNumber"></app-post>
+<app-post [_pageNumber] = "pageNumber" [_loggedInUserID] = "_userId"></app-post>
 <div class = "pageNumber">
     <button *ngIf = "pageNumber > 1" (click) = "backPage()">Back</button> <!-- displays back button if on page 2+ -->
     <input [(ngModel)] = "pageNumber" type="text" >
