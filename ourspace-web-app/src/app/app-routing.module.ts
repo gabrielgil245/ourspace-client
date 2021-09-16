@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create-post', component: CreatePostComponent},
-  {path: 'user-profile', component: UserProfileComponent}
+  {path: 'user-profile/:username', component: UserProfileComponent}
 ];
 
 @NgModule({
