@@ -14,7 +14,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PostComponent } from './components/post/post.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     DashboardComponent,
     PostComponent,
     CreatePostComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    EditProfileComponent
 
   ],
   imports: [
@@ -39,7 +41,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

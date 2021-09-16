@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create-post', component: CreatePostComponent},
-  {path: 'user-profile', component: UserProfileComponent}
+  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'edit-profile', component: EditProfileComponent}
 ];
 
 @NgModule({

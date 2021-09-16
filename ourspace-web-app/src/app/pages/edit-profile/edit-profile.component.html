@@ -1,0 +1,29 @@
+<button class="btn btn-primary" (click)="triggerModal(modalData)">Edit Profile</button>
+
+<ng-template #modalData let-modal>
+  <div class="modal-header text-center">
+    <h4 class="modal-title text-center" id="modal-basic-title">Edit Profile</h4>
+    <button type="button" class="close btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')" value="Change">
+      <span aria-hidden="true">X</span>
+    </button>
+  </div>
+  <div class="modal-body form-edit">
+    <form class = "signUpContainer form-container text-center">
+        <div class = "text-center" id="image-container">
+          <img [src] = "_imgURL" id="image" alt="{{_altName}}">
+          <h5 class="mt-2">{{_altName}}</h5>
+          <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
+      </div>
+      <div>
+        <input type="text" placeholder="Username" value="{{_username}}" class = "text-center" name="_username" disabled>
+        <input type="text" placeholder="First Name" value="{{_first_name}}" class = "text-center" name="_first_name">
+        <input type="text" placeholder="Last Name" value="{{_last_name}}" class = "text-center" name="_last_name">
+        <input type="email" placeholder="Email Address"  value="{{_email}}" class = "text-center" name="_email" disabled>
+        <input type="date" id="_birthday" [(ngModel)]="_birthday" name="_birthday" value="{{_birthday}}" class="text-center">
+        <textarea  placeholder="About Me (Optional)" value="{{_about_me}}" class = "userInput" id = "aboutMe" name="_about_me"></textarea>
+
+        <button class="btn btn-primary" id= "submitButton" (click) = "submit()">Submit</button>
+        </div>
+      </form>
+  </div>
+</ng-template>
