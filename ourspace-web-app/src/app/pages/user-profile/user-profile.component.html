@@ -1,3 +1,9 @@
 <p>user-profile works!</p>
 <app-user-info></app-user-info>
-<app-post></app-post>
+<app-post [_pageNumber]="pageNumber"></app-post>
+<div class="pageNumber">
+    <button *ngIf="pageNumber > 1" (click)="backPage()">Back</button> <!-- displays back button if on page 2+ -->
+    <input [(ngModel)]="pageNumber" type="number" min="1" disabled="true">
+    <button (click)="nextPage()">Forward</button>
+</div>
+

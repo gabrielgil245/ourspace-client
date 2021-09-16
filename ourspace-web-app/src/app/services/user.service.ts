@@ -22,7 +22,11 @@ export class UserService {
   }
 
   getUserByEmail(email: string){
-    return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/user/"+ email, {withCredentials: true});
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/user/${email}`, {withCredentials: true});
+  }
+
+  getUserByUsername(username: string) {
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/user/${username}`, {withCredentials: true});
   }
 
   checkSession(){
@@ -55,7 +59,7 @@ export class UserService {
   }
 
   forgotPassword(email: string){
-    return this.httpCli.get<any>("http://localhost:9000/ourspaceserver/api/forgot-password/"+ email, {withCredentials: true});
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/forgot-password/${email}`, {withCredentials: true});
   }
 
   editProfile(firstName: string, lastName: string, birthday: any, aboutMe: string, profilePic: any){
