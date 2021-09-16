@@ -11,11 +11,11 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 const routes: Routes = [
   {path: '', component: LoginComponent },
   {path: 'signup', component: SignUpComponent},
-  {path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'reset-password/:email', component: ResetPasswordComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create-post', component: CreatePostComponent},
-  {path: 'user-profile', component: UserProfileComponent}
+  {path: 'user-profile/:username', component: UserProfileComponent}
 ];
 
 @NgModule({

@@ -16,15 +16,15 @@ export class DashboardComponent implements OnInit {
   _userId:number = 0;
 
   ngOnInit(): void {
-       this.userService.checkSession().subscribe(data => {
-         console.log(data);
+    this.userService.checkSession().subscribe(data => {
+      console.log(data)
       if (data.success){
         this.router.navigate([`/dashboard`]);
         this._userId = data.data.userId
       } else {
         this.router.navigate([``]);
       }
-    })   
+    })
   }
 
   nextPage(){
