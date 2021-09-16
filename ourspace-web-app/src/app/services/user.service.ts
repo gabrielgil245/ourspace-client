@@ -26,7 +26,7 @@ export class UserService {
   }
 
   getUserByUsername(username: string) {
-    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/user/${username}`, {withCredentials: true});
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/username/${username}`, {withCredentials: true});
   }
 
   checkSession(){
