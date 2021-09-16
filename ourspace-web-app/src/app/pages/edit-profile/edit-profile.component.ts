@@ -45,8 +45,10 @@ export class EditProfileComponent implements OnInit {
         this._email = data.data.email;
         this._about_me = data.data.aboutMe;
         this._birthday = this.datePipe.transform(data.data.birthday, 'yyyy-MM-dd');
-        this._imgURL = data.data.profilePic == null ? "https://picsum.photos/200" : data.data.profilePic;
-        this._altName = data.data.profilePic == null ? "Lorem Picsum Photo" : "Profile Photo";
+        this._imgURL = data.data.profilePic == "" ? "https://picsum.photos/200" : data.data.profilePic;
+        this._altName = data.data.profilePic == "" ? "Lorem Picsum Photo" : "Profile Photo";
+        console.log(this._imgURL)
+        console.log(this._altName)
       } else {
         alert("Page Not Found")
         this.router.navigate([`/`]);
@@ -69,7 +71,9 @@ export class EditProfileComponent implements OnInit {
     /* if user chooses not to include a profile pic, imagelink is not included */
     this.userService.editProfile(this._first_name, this._last_name, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
       if (data.success) {
-        this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+        if (this.profilePic != ""){
+          this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+        }
       }
     })
   }
