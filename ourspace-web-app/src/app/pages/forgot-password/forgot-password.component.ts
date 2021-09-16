@@ -25,11 +25,14 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this._emailInput == "" || this._emailInput == " ") {
+      alert("Please enter a valid email address in the field");
+    }
     this.userService.forgotPassword(this._emailInput).subscribe(data => {
       if (data.success){
         console.log(data)
         alert(data.message);
-        this.router.navigate([`/dashboard`]);
+        this.router.navigate([""]);
       }
     })
   }
