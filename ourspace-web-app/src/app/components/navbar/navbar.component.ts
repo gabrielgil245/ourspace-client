@@ -96,14 +96,15 @@ export class NavbarComponent implements OnInit, OnChanges {
     let username: string = this._searchResult;
     this._searchResult = "";
     this.userService.getUserByUsername(username).subscribe(user => {
+      console.log(user);
       if (user.success) {
-        this.router.navigate([`/user-profile/${username}`]);
+        this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
       }
     });
   }
 
   viewProfile() {
     let username: string = this.user.username;
-    this.router.navigate([`/user-profile/${username}`]);
+    this.router.navigate([`/user-profile/`], {queryParams: {username: username}});
   }
 }
