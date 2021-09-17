@@ -76,7 +76,7 @@ export class EditProfileComponent implements OnInit {
       console.log(data);
     })
     } else if(this.added_pic){ /* If they include a profile pic, includes the link */
-        this.profilePic = "https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/" + this._username + ".PNG"
+        this.profilePic = "https://revature-project2-roel.s3.us-east-2.amazonaws.com/profilepics/" + this._username + ".PNG"
         this.userService.editProfile(this._first_name, this._last_name, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
           this.success = data.success;
           console.log(data);
