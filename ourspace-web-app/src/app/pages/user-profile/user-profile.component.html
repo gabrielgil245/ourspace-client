@@ -1,9 +1,44 @@
-<p>user-profile works!</p>
-<app-user-info></app-user-info>
-<app-post [_pageNumber]="pageNumber"></app-post>
-<div class="pageNumber">
-    <button *ngIf="pageNumber > 1" (click)="backPage()">Back</button> <!-- displays back button if on page 2+ -->
-    <input [(ngModel)]="pageNumber" type="number" min="1" disabled="true">
+<div class="container">
+    <div class="row">
+        <!-- <img class="img-thumbnail w-25 col-2" [src]="_profilePic"> -->
+        <div class="col-2">
+            <i [ngClass]="_isEmpty ? 'fas fa-user img-thumbnail p-2' : ''" style='font-size: 500%'></i>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-4 fw-bold">
+                    Username
+                </div>
+                <div class="col-4 fw-bold">
+                    Name
+                </div>
+                <div class="col-4 fw-bold">
+                    Birthday
+                </div>
+                <div class="col-4">
+                    {{user.username}}
+                </div>
+                <div class="col-4">
+                    {{user.firstName}} {{user.lastName}}
+                </div>
+                <div class="col-4">
+                    {{user.birthday | date: 'MM/dd/yyyy'}}
+                </div>
+                <div class="fw-bold">
+                    About Me:
+                </div>
+                <div>
+                    {{user.aboutMe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-post [_pageNumber]="_pageNumber"></app-post>
+<div class="_pageNumber">
+    <button *ngIf="_pageNumber > 1" (click)="backPage()">Back</button> <!-- displays back button if on page 2+ -->
+    <input [(ngModel)]="_pageNumber" type="number" min="1" disabled="true">
     <button (click)="nextPage()">Forward</button>
 </div>
 
