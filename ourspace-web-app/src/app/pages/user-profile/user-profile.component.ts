@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,22 +9,91 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnChanges {
 
-  constructor(private userService: UserService, private router: Router) { }
+  @Input()
+  user: User = {
+    userId: 0,
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthday: "",
+    aboutMe: "",
+    profilePic: ""
+  };
+  _pageNumber: number = 1;
+  _profilePic: string = "";
+  _isEmpty: boolean = false;
+  observer: Subscription = new Subscription;
+  _usernameParam: string = "";
+  
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private route: ActivatedRoute) {
 
-  pageNumber: number = 1;
+      //Retrieving value from query parameter
+      this.observer = this.route.queryParams.subscribe(params => {
+        this._usernameParam = params['username'];
+      })
+      console.log(this._usernameParam);
+      
+    }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {   
+    this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
+      this.user = {
+        userId: user.data.userId,
+        username: user.data.username,
+        password: user.data.password,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
+        email: user.data.email,
+        birthday: user.data.birthday,
+        aboutMe: user.data.aboutMe,
+        profilePic: user.data.profilePic
+      }
+    })
+
+    if(this.user.profilePic == "" || this.user.profilePic == null) {
+      this._isEmpty = true;
+    }
+  }
+
+  ngOnChanges(observer: SimpleChanges): void {
+    console.log("ngOnChanges");
+    this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
+      this.user = {
+        userId: user.data.userId,
+        username: user.data.username,
+        password: user.data.password,
+        firstName: user.data.firstName,
+        lastName: user.data.lastName,
+        email: user.data.email,
+        birthday: user.data.birthday,
+        aboutMe: user.data.aboutMe,
+        profilePic: user.data.profilePic
+      }
+    })
+  }
+
+  retrieveFromUsername() {
+    this.userService.getUserByUsername(this.user.username).subscribe(user => {
+      console.log(user);
+      if (user.success) {
+        this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
+      }
+    });
   }
 
   nextPage() {
-    this.pageNumber += 1;
+    this._pageNumber += 1;
   }
 
   backPage() {
-    this.pageNumber -= 1;
+    this._pageNumber -= 1;
   }
 
 }
