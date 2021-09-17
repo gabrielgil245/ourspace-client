@@ -27,9 +27,9 @@ user : User = {
   _imagePath: string = "";
   _name: string = "";
 
-  
+
   constructor(private router: Router ) {
-   
+
    }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ user : User = {
   }
 
   toUserProfile(){
-    this.router.navigate(["/user-profile/${this._name}"])
+    this.router.navigate([`/user-profile?username=`+this._name]);
   }
 
 }

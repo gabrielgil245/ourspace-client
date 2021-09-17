@@ -1,8 +1,7 @@
   <div class="modal-body form-edit">
     <h3 class="text-center" id="modal-basic-title">Edit Profile</h3>
     <form class = "signUpContainer form-container text-center">
-
-        <div class = "text-center" id="image-container">
+      <div class = "text-center" id="image-container">
           <img [src] = "_imgURL" id="image" alt="{{_altName}}">
           <h5 class="mt-2">{{_altName}}</h5>
           <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
