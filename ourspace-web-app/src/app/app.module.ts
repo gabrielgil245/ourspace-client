@@ -14,13 +14,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PostComponent } from './components/post/post.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-<<<<<<< HEAD
-import { UserInteractionComponent } from './components/user-interaction/user-interaction/user-interaction.component';
-
-=======
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { DatePipe } from '@angular/common';
->>>>>>> development
+import { UserInteractionComponent } from './components/user-interaction/user-interaction/user-interaction.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +31,8 @@ import { DatePipe } from '@angular/common';
     PostComponent,
     CreatePostComponent,
     UserProfileComponent,
-<<<<<<< HEAD
+    EditProfileComponent,
     UserInteractionComponent
-=======
-    EditProfileComponent
->>>>>>> development
 
   ],
   imports: [
