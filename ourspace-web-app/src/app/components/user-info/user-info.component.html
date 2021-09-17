@@ -1,4 +1,12 @@
 <div id = "profile-info">
-    <img [src] = "_imagePath" class = "profilePic" (click) = "toUserProfile()">
-    <span class = "name" (click) = "toUserProfile()">{{_name}}</span>
+  <svg width="100" height="100">
+  <defs>
+    <clipPath id="circleView">
+        <circle cx="40" cy="40" r="40" fill="#3333ff" />
+    </clipPath>
+</defs>
+  <image [attr.href]="_imagePath" height="80" clip-path="url(#circleView)" (click) = "toUserProfile()"/>
+</svg>
+    <!-- <img [src] = "_imagePath" class = "profilePic" (click) = "toUserProfile()"> -->
+    <a class="name " (click) = "toUserProfile()">{{_name}}</a>
 </div>
