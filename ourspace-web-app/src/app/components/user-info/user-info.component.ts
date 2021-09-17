@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User'
-import { Subscription } from 'rxjs';
+
 
 
 @Component({
@@ -27,11 +27,8 @@ user : User = {
   _imagePath: string = "";
   _name: string = "";
 
-  observer: Subscription = new Subscription;
   
-  constructor(private userServices : UserService) {
-
-    //this._imagePath = `https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/${this.user.username}.PNG`
+  constructor(private router: Router ) {
    
    }
 
@@ -40,5 +37,8 @@ user : User = {
     this._imagePath= this.user.profilePic;
   }
 
+  toUserProfile(){
+    this.router.navigate(["/user-profile/${this._name}"])
+  }
 
 }

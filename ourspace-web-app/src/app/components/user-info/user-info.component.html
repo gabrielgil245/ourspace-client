@@ -1,4 +1,4 @@
 <div id = "profile-info">
-    <img [src] = "_imagePath" class = "profilePic">
-    <span class = "name">{{_name}}</span>
+    <img [src] = "_imagePath" class = "profilePic" (click) = "toUserProfile()">
+    <span class = "name" (click) = "toUserProfile()">{{_name}}</span>
 </div>

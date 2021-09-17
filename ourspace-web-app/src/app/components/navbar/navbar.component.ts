@@ -53,30 +53,13 @@ export class NavbarComponent implements OnInit, OnChanges {
                }
 
   ngOnChanges(): void {
-    this.observer = this.userService.checkSession().subscribe(data => {
-      console.log(data);
-      if (!data.success){
-        //Add attribute binding to add a class name invisible to hide the menu buttons if no session found
-        this._classDisplay = "d-none"
-      } else {
-        // If session found display the buttons
-        this._classDisplay = "d-flex mt-3"
-      }
-    })
+
   }
 
   ngOnInit(): void {
-    this.userService.checkSession().subscribe(data => {
-      console.log(data);
-      if (!data.success){
-        //Add attribute binding to add a class name invisible to hide the menu buttons if no session found
-        this._classDisplay = "d-none"
-      }
-    })
     this.router.events.subscribe(data =>{
       if(data instanceof NavigationStart){
         if(data.url == ("/dashboard" || "/create-post" || "/user-profile")){
-        // If session found display the buttons
         this._classDisplay = "d-flex mt-3"
         }
       }
@@ -85,7 +68,6 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   logout(){
     this.userService.logout().subscribe(user =>{
-      console.log(user)
       if (user.success){
         this.router.navigate([`/`]);
       }

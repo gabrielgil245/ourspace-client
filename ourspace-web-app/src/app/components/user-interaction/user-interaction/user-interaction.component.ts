@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { GetAllLikesByPostService } from 'src/app/services/get-all-likes-by-post/get-all-likes-by-post.service';
 import { GetAllLikesByUserService } from 'src/app/services/get-all-likes-by-user/get-all-likes-by-user.service';
 import { ToggleLikeService } from 'src/app/services/toggleLike/toggle-like.service';
 
@@ -10,13 +11,14 @@ import { ToggleLikeService } from 'src/app/services/toggleLike/toggle-like.servi
 })
 export class UserInteractionComponent implements OnInit {
 
-  post: any = [];
+
   liked!:boolean;
   _innerText! : string;
   likes: any = [];
   likesObserver: Subscription = new Subscription;
   toggleLikeObserver: Subscription = new Subscription;
-  displayText:string = "";
+  totalLikes: number = 0;
+  postLikes: any = [];
 
   @Input()
   _postID:number = 0;
@@ -24,7 +26,7 @@ export class UserInteractionComponent implements OnInit {
   @Input()
   _loggedInUserID: number = 0;
 
-  constructor( private getAllLikesByUser: GetAllLikesByUserService, private toggleLikes:ToggleLikeService ) { 
+  constructor( private getAllLikesByUser: GetAllLikesByUserService, private toggleLikes:ToggleLikeService, private getAllLikesByPost: GetAllLikesByPostService ) { 
     setTimeout(() =>{
       this.likesObserver = this.getAllLikesByUser.getAllLikesByUserId(this._loggedInUserID).subscribe(like =>{
         for(let given of like){
@@ -38,12 +40,22 @@ export class UserInteractionComponent implements OnInit {
            this.liked = false;
         };
       })
+      if(this.liked == null){
+        this._innerText = "Like Post";
+        this.liked = false;
+      }
     },50)
+    this.getAllLikesForPost()
   }
 
   ngOnInit(): void {
 
+  }
 
+  getAllLikesForPost(){
+    this.postLikes = this.getAllLikesByPost.getAll(this._postID).subscribe(index =>{
+      this.totalLikes = index.length;
+    })
   }
 
   toggleLike(){
