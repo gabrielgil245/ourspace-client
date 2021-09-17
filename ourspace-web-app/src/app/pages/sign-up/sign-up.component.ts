@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/services/upload-file/upload-file.service';
 import { UserService } from 'src/app/services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,7 @@ export class SignUpComponent implements OnInit {
   _last_name: string = "";
   _email: string = "";
   _birthday: Date | undefined;
-  _about_me: string = "";
+  _about_me: any;
   _imgURL: any;
   selectedFile: any;
   added_pic:boolean = false;
@@ -58,10 +59,10 @@ export class SignUpComponent implements OnInit {
         this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
       }
         this.router.navigate([`/`]);
-    
+
   }
-  
- 
+
+
 }
 
 

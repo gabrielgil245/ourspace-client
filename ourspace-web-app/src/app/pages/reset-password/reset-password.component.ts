@@ -46,19 +46,14 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(){
-    this.userService.checkSession().subscribe(data => {
-      console.log(data)
-      if (data.success){
-        if (this._password == this._confirmPassword && this._confirmPassword != "" ){
-          this.userService.resetPassword(this._email, this._password).subscribe(user => {
-            if (user.success){
-              alert(user.message);
-              this.router.navigate([`/dashboard`]);
-            }
-          })
+    if (this._password == this._confirmPassword && this._confirmPassword != "" ){
+      this.userService.resetPassword(this._email, this._password).subscribe(user => {
+        if (user.success){
+          alert(user.message);
+          this.router.navigate([""]);
         }
-      }
-    })
+      })
+    }
   }
 
 
