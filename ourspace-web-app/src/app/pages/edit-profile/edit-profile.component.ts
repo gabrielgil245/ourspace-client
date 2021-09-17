@@ -45,8 +45,10 @@ export class EditProfileComponent implements OnInit {
         this._email = data.data.email;
         this._about_me = data.data.aboutMe;
         this._birthday = this.datePipe.transform(data.data.birthday, 'yyyy-MM-dd');
-        this._imgURL = data.data.profilePic == null ? "https://picsum.photos/200" : data.data.profilePic;
-        this._altName = data.data.profilePic == null ? "Lorem Picsum Photo" : "Profile Photo";
+        this._imgURL = (data.data.profilePic == null || data.data.profilePic == "") ? "https://picsum.photos/200" : data.data.profilePic;
+        this._altName = (data.data.profilePic == null || data.data.profilePic == "") ? "Lorem Picsum Photo" : "Profile Photo";
+        console.log(this._imgURL)
+        console.log(this._altName)
       } else {
         alert("Page Not Found")
         this.router.navigate([`/`]);
@@ -66,12 +68,22 @@ export class EditProfileComponent implements OnInit {
   }
 
   submit(){
-    /* if user chooses not to include a profile pic, imagelink is not included */
+    /* if user chooses not to include a profile pic, imagelink is empty*/
+    if(!this.added_pic) {
+    this.profilePic = "";
     this.userService.editProfile(this._first_name, this._last_name, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
-      if (data.success) {
-        this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
-      }
+      this.success = data.success;
+      console.log(data);
     })
+    } else if(this.added_pic){ /* If they include a profile pic, includes the link */
+        this.profilePic = "https://revature-project2-roel.s3.us-east-2.amazonaws.com/profilepics/" + this._username + ".PNG"
+        this.userService.editProfile(this._first_name, this._last_name, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
+          this.success = data.success;
+          console.log(data);
+        })
+        this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+    }
+    this.router.navigate([`/`]);
   }
 
   triggerModal(content: any) {
