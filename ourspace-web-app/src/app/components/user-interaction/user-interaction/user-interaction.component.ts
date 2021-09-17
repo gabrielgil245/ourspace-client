@@ -62,7 +62,6 @@ export class UserInteractionComponent implements OnInit {
   getAllLikesForPost(){
     this.postLikes = this.getAllLikesByPost.getAll(this._postID).subscribe(index =>{
       this.totalLikes = index.data.length;
-      this.likes = index;
       if(this.totalLikes == 1){
         this.inner = "1 Like"
       }
@@ -101,6 +100,8 @@ export class UserInteractionComponent implements OnInit {
   }
 
   returnLikes() : Array<any>{
+    this.postLikes = this.getAllLikesByPost.getAll(this._postID).subscribe(index =>{
+      this.likes = index});
     return this.likes.data;
   }
 
