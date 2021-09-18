@@ -46,7 +46,7 @@ export class EditProfileComponent implements OnInit {
         this._about_me = data.data.aboutMe;
         this._birthday = this.datePipe.transform(data.data.birthday, 'yyyy-MM-dd');
         this._imgURL = (data.data.profilePic == null || data.data.profilePic == "") ? "https://picsum.photos/200" : data.data.profilePic;
-        this._altName = (data.data.profilePic == null || data.data.profilePic == "") ? "Lorem Picsum Photo" : "Profile Photo";
+        this._altName = (data.data.profilePic == null || data.data.profilePic == "") ? "Lorem Picsum Photo" : data.data.firstName + " Profile Photo";
         console.log(this._imgURL)
         console.log(this._altName)
       } else {
