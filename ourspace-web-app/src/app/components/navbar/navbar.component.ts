@@ -33,24 +33,9 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   observer: Subscription = new Subscription;
 
-  constructor(private httpCli: HttpClient,
-              private userService: UserService,
-              private generic: GenericService,
-              private router: Router ) {
-                this.observer = this.userService.checkSession().subscribe(user => {
-                  this.user = {
-                    userId: user.data.userId,
-                    username: user.data.username,
-                    password: user.data.password,
-                    firstName: user.data.firstName,
-                    lastName: user.data.lastName,
-                    email: user.data.email,
-                    birthday: user.data.birthday,
-                    aboutMe: user.data.aboutMe,
-                    profilePic: user.data.profilePic
-                  }
-                })
-               }
+  constructor(private httpCli: HttpClient, private userService: UserService, private generic: GenericService, private router: Router ) {
+    
+  }
 
   ngOnChanges(): void {
 
@@ -62,6 +47,20 @@ export class NavbarComponent implements OnInit, OnChanges {
         if(data.url == ("/dashboard" || "/create-post" || "/user-profile")){
         this._classDisplay = "d-flex mt-3"
         }
+        this.observer = this.userService.checkSession().subscribe(user => {
+          this.user = {
+            userId: user.data.userId,
+            username: user.data.username,
+            password: user.data.password,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
+            email: user.data.email,
+            birthday: user.data.birthday,
+            aboutMe: user.data.aboutMe,
+            profilePic: user.data.profilePic
+          }
+        })
+        console.log(this.user);
       }
     })
   }
