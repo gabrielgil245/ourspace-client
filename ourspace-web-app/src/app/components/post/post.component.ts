@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { GetAllPostsByPageService } from 'src/app/services/get-all-posts-by-page/get-all-posts-by-page.service';
+import { PostService } from 'src/app/services/post.service';
 
 
 @Component({
@@ -23,7 +24,9 @@ export class PostComponent implements OnInit, OnChanges {
   @Input()
   _loggedInUserID: number = 0;
 
-  constructor(private getAllPostsByPage: GetAllPostsByPageService) {
+  constructor(
+    private getAllPostsByPage: GetAllPostsByPageService,
+    private postService: PostService) {
     
   }
 

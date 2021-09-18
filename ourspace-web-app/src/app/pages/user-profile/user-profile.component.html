@@ -35,8 +35,8 @@
     </div>
 </div>
 
-<app-post [_pageNumber]="_pageNumber"></app-post>
-<div class="_pageNumber">
+<app-post [_pageNumber]="_pageNumber" [_loggedInUserID]="_userId"></app-post>
+<div class="_pageNumbe d-flex justify-content-center">
     <button *ngIf="_pageNumber > 1" (click)="backPage()">Back</button> <!-- displays back button if on page 2+ -->
     <input [(ngModel)]="_pageNumber" type="number" min="1" disabled="true">
     <button (click)="nextPage()">Forward</button>

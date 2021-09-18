@@ -28,6 +28,7 @@ export class UserProfileComponent implements OnInit, OnChanges {
   _isEmpty: boolean = false;
   observer: Subscription = new Subscription;
   _usernameParam: string = "";
+  _userId: number = 0;
   
   constructor(
     private userService: UserService, 

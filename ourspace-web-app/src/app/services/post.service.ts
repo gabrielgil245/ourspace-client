@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class PostService {
 
-  constructor() { }
+  constructor(private httpCli: HttpClient) { }
+
+  getPostsByUserAndPageNumber(userId: number, pageNumber: number) {
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/${userId}/${pageNumber}`, { withCredentials: true });
+  }
 }
