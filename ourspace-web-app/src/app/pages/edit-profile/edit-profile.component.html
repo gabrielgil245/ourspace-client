@@ -1,20 +1,39 @@
-  <div class="modal-body form-edit">
-    <h3 class="text-center" id="modal-basic-title">Edit Profile</h3>
-    <form class = "signUpContainer form-container text-center">
-      <div class = "text-center" id="image-container">
-          <img [src] = "_imgURL" id="image" alt="{{_altName}}">
+<div class="modal-body form-edit">
+  <form class="signUpContainer form-container text-center pt-4">
+      <h2 class="text-center " id="modal-basic-title">Edit Profile</h2>
+      <div class="border-bottom border-2 border-secondary m-4"></div>
+      <div class="text-center" id="image-container">
+          <img [src]="_imgURL" id="image" alt="{{_altName}}">
           <h5 class="mt-2">{{_altName}}</h5>
-          <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
+          <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change)="fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
       </div>
-      <div>
-        <input type="text" placeholder="Username" value="{{_username}}" class = "text-center" name="_username" disabled>
-        <input type="text" placeholder="First Name" value="{{_first_name}}" class = "text-center" name="_first_name" [(ngModel)]="_first_name">
-        <input type="text" placeholder="Last Name" value="{{_last_name}}" class = "text-center" name="_last_name" [(ngModel)]="_last_name">
-        <input type="email" placeholder="Email Address"  value="{{_email}}" class = "text-center" name="_email" disabled>
-        <input type="date" id="_birthday" [(ngModel)]="_birthday" name="_birthday" value="{{_birthday}}" class="text-center" [(ngModel)]="_birthday">
-        <textarea  placeholder="About Me (Optional)" value="{{_about_me}}" class = "userInput" id = "aboutMe" name="_about_me" [(ngModel)]="_about_me"></textarea>
-
-        <button class="btn btn-primary" id= "submitButton" (click) = "submit()">Submit</button>
-        </div>
-      </form>
-  </div>
+      <div class="border-bottom border-2 border-secondary m-4"></div>
+      <div class="text-start">
+          <div class="d-flex justify-content-evenly">
+              <label for="_username" class="h5 mt-3 w-25">Username</label>
+              <input type="text" placeholder="Username" value="{{_username}}" class="text-start w-75" name="_username" disabled>
+          </div>
+          <div>
+              <label for="_first_name" class="h5 mt-3 w-25">First Name</label>
+              <input type="text" placeholder="First Name" value="{{_first_name}}" class="text-start w-75" name="_first_name" [(ngModel)]="_first_name">
+          </div>
+          <div>
+              <label for="_last_name" class="h5 mt-3 w-25">Last Name</label>
+              <input type="text" placeholder="Last Name" value="{{_last_name}}" class="text-start w-75" name="_last_name" [(ngModel)]="_last_name">
+          </div>
+          <div>
+              <label for="_email" class="h5 mt-3 w-25">Email</label>
+              <input type="email" placeholder="Email Address" value="{{_email}}" class="text-start w-75" name="_email" disabled>
+          </div>
+          <div>
+              <label for="_birthday" class="h5 mt-3 w-25">Birthdate</label>
+              <input type="date" id="_birthday" [(ngModel)]="_birthday" name="_birthday" value="{{_birthday}}" class="text-start w-75" [(ngModel)]="_birthday">
+          </div>
+          <div>
+            <label for="_about_me" class="h5 mt-3 w-25">About Me</label>
+            <textarea placeholder="About Me (Optional)" value="{{_about_me}}" class="userInput" id="aboutMe" name="_about_me" [(ngModel)]="_about_me"></textarea>
+          </div>
+          <button class="btn btn-primary" id="submitButton" (click)="submit()">Submit</button>
+      </div>
+  </form>
+</div>

@@ -59,7 +59,8 @@ export class NavbarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.router.events.subscribe(data =>{
       if(data instanceof NavigationStart){
-        if(data.url == ("/dashboard" || "/create-post" || "/user-profile")){
+        console.log(data)
+        if(data.url == ("/dashboard" || "/create-post" || "/user-profile" || "/edit-profile")){
         this._classDisplay = "d-flex mt-3"
         }
       }

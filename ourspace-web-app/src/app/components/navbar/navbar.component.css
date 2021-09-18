@@ -1,4 +1,3 @@
-
 #logo-container, #search-container, #navbarColor02 {
  display: inline-flex;
 }
@@ -26,6 +25,11 @@ svg {
 .navbar-brand {
   font-size: xx-large;
 }
+
+#site-brand{
+  text-shadow: 2px 2px #f55448;
+}
+
 
 @media only screen and (max-width: 480px) {
 
