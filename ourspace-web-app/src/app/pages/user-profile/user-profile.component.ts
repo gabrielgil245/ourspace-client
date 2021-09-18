@@ -57,6 +57,8 @@ export class UserProfileComponent implements OnInit, OnChanges {
             aboutMe: user.data.aboutMe,
             profilePic: user.data.profilePic
           }
+          this._userId = user.data.userId;
+          console.log(this._userId);
           this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
         }
       } else {
@@ -81,6 +83,8 @@ export class UserProfileComponent implements OnInit, OnChanges {
         aboutMe: data.data.aboutMe,
         profilePic: data.data.profilePic
       }
+      this._userId = data.data.userId;
+      console.log(this._userId);
     })
   }
 
