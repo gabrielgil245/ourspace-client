@@ -42,13 +42,13 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
 
 
   closeResult = '';
-  
-  constructor( private getAllLikesByUser: GetAllLikesByUserService, 
-    private toggleLikes:ToggleLikeService, 
-    private getAllLikesByPost: GetAllLikesByPostService, 
+
+  constructor( private getAllLikesByUser: GetAllLikesByUserService,
+    private toggleLikes:ToggleLikeService,
+    private getAllLikesByPost: GetAllLikesByPostService,
     private modalService: NgbModal,
     private getComments: GetCommentsService,
-    private createComment: CreateCommentService ) { 
+    private createComment: CreateCommentService ) {
     setTimeout(() =>{
       this.likesObserver = this.getAllLikesByUser.getAllLikesByUserId(this._loggedInUserID).subscribe(like =>{
         if(like === null){
@@ -89,12 +89,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
   getAllCommentsForPost(){ //method to determine the total number of comments and display as comment or comments
      this.postComments = this.getComments.getCommentsForPost(this._postID).subscribe(commentData =>{
         this.totalComment = commentData.data.length;
-        if(this.totalComment == 1){
-          this.innerComment = "1 Comment"
-        }
-        else{
-          this.innerComment = this.totalComment + " Comments"
-        }
+        this.innerComment = this.totalComment <= 1 ? this.totalComment + " Comment" : this.totalComment + " Comments";
      })
   }
 
@@ -128,7 +123,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
       this.likes = index});
     return this.likes;
   }
-  
+
   returnComments() : Array<any>{ //returns the list of comments to display when comments is clicked
      this.postComments = this.getComments.getCommentsForPost(this._postID).pipe(take(1)).subscribe(index =>{
       this.comments = index});
@@ -171,7 +166,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = 
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
   }

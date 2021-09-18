@@ -1,49 +1,41 @@
-<div class="container">
-    <div class="row">
-        <!-- <img class="img-thumbnail w-25 col-2" [src]="_profilePic"> -->
-        <div class="col-3">
-            <i [ngClass]="_isEmpty ? 'fas fa-user img-thumbnail p-2' : ''" style='font-size: 500%'></i>
-            <img [ngClass]="!_isEmpty ? 'img-responsive d-flex rounded mt-1' : ''" [src]="_user.profilePic" width="100%">
-        </div>
-        <div class="col-9">
-            <div class="row">
-                <div class="col-4 fw-bold">
-                    Username
-                </div>
-                <div class="col-4 fw-bold">
-                    Name
-                </div>
-                <div class="col-4 fw-bold">
-                    Birthday
-                </div>
-                <div class="col-4">
-                    {{_user.username}}
-                </div>
-                <div class="col-4">
-                    {{_user.firstName}} {{_user.lastName}}
-                </div>
-                <div class="col-4">
-                    {{_user.birthday | date: 'MM/dd/yyyy'}}
-                </div>
-                <div class="fw-bold">
-                    About Me:
-                </div>
-                <div>
-                    {{_user.aboutMe}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="modal-body form-edit">
+  <form class="signUpContainer form-container text-center p-5">
 
-<div class="_pageNumber d-flex justify-content-center">
-    <button *ngIf="_pageNumber > 1" (click)="backPage()" class="btn btn-outline-info">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="lightblue" class="bi bi-caret-up-fill"
-            viewBox="0 0 16 16">
-            <path
-                d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-        </svg>
-    </button> <!-- displays back button if on page 2+ -->
+      <div class="d-flex justify-content-evenly" id="image-container">
+          <div>
+              <img [src]="user.profilePic" id="image" alt="{{user.profilePic}}">
+          </div>
+          <div class="">
+              <div>
+                  <h4 class="text-center mt-0 ">Account details</h4>
+              </div>
+              <div class="border-top border-2 border-secondary">
+                  <div class="">
+                      <label class="">Username</label>
+                      <label>{{user.username}}</label>
+                  </div>
+                  <div>
+                      <label for="_first_name" class="">Name</label>
+                      <label><span>{{user.firstName}}</span><span>{{user.lastName}}</span></label>
+                  </div>
+                  <div>
+                      <label for="_email" class="">Email</label>
+                      <label>{{user.email}}</label>
+                  </div>
+                  <div>
+                      <label for="_birthday" class="">Birthdate</label>
+                      <label>{{user.birthday | date: 'MM/dd/yyyy'}}</label>
+                  </div>
+                  <div>
+                      <label for="_about_me" class="">About Me</label>
+                      <label for="about_me">{{user.aboutMe}}</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+  </form>
 </div>
 
 <app-post [_pageNumber]="_pageNumber" [_loggedInUserID]="_userId"></app-post>
