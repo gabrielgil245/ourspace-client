@@ -68,9 +68,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   submit(){
-    /* if user chooses not to include a profile pic, imagelink is empty*/
+    /* if user chooses not to include a profile pic*/
     if(!this.added_pic) {
-    this.profilePic = "";
+    this.profilePic = this._imgURL;
+    console.log(this.profilePic);
     this.userService.editProfile(this._first_name, this._last_name, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
       this.success = data.success;
       console.log(data);
