@@ -11,8 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserProfileComponent implements OnInit, OnChanges {
 
-  @Input()
-  user: User = {
+  _user: User = {
     userId: 0,
     username: "",
     password: "",
@@ -41,12 +40,13 @@ export class UserProfileComponent implements OnInit, OnChanges {
     //Retrieving value from query parameter
     this.observer = this.route.queryParams.subscribe(params => {
       this._usernameParam = params['username'];
+      console.log(this._usernameParam);
     })   
     
     this.userService.checkSession().subscribe(user => {
       if (user.success) {
         if(this._usernameParam == "") {
-          this.user = {
+          this._user = {
             userId: user.data.userId,
             username: user.data.username,
             password: user.data.password,
@@ -59,54 +59,37 @@ export class UserProfileComponent implements OnInit, OnChanges {
           }
           this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
         }
-        
       } else {
         this.router.navigate([``]);
       }
     })  
+    console.log(this._usernameParam);
 
-    this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
-      this.user = {
-        userId: user.data.userId,
-        username: user.data.username,
-        password: user.data.password,
-        firstName: user.data.firstName,
-        lastName: user.data.lastName,
-        email: user.data.email,
-        birthday: user.data.birthday,
-        aboutMe: user.data.aboutMe,
-        profilePic: user.data.profilePic
+    this.userService.getUserByUsername(this._usernameParam).subscribe(data => {
+      if (data.data.profilePic == "" || data.data.profilePic == null) {
+        this._isEmpty = true;
+      }
+      console.log(data);
+      this._user = {
+        userId: data.data.userId,
+        username: data.data.username,
+        password: data.data.password,
+        firstName: data.data.firstName,
+        lastName: data.data.lastName,
+        email: data.data.email,
+        birthday: data.data.birthday,
+        aboutMe: data.data.aboutMe,
+        profilePic: data.data.profilePic
       }
     })
-
-    if(this.user.profilePic == "" || this.user.profilePic == null) {
-      this._isEmpty = true;
-    }
   }
 
   ngOnChanges(): void {
-    this.observer = this.route.queryParams.subscribe(params => {
-      this._usernameParam = params['username'];
-    })
-    console.log(this._usernameParam);
-
-    this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
-      this.user = {
-        userId: user.data.userId,
-        username: user.data.username,
-        password: user.data.password,
-        firstName: user.data.firstName,
-        lastName: user.data.lastName,
-        email: user.data.email,
-        birthday: user.data.birthday,
-        aboutMe: user.data.aboutMe,
-        profilePic: user.data.profilePic
-      }
-    })
+    
   }
 
   retrieveFromUsername() {
-    this.userService.getUserByUsername(this.user.username).subscribe(user => {
+    this.userService.getUserByUsername(this._user.username).subscribe(user => {
       console.log(user);
       if (user.success) {
         this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
