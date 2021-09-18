@@ -17,6 +17,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { DatePipe } from '@angular/common';
 import { UserInteractionComponent } from './components/user-interaction/user-interaction/user-interaction.component';
+import { DatePostedComponent } from './components/date-posted/date-posted.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserInteractionComponent } from './components/user-interaction/user-int
     CreatePostComponent,
     UserProfileComponent,
     EditProfileComponent,
-    UserInteractionComponent
+    UserInteractionComponent,
+    DatePostedComponent
 
   ],
   imports: [

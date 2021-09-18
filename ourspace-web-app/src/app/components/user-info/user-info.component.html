@@ -8,5 +8,7 @@
   <image [attr.href]="_imagePath" height="80" clip-path="url(#circleView)" (click) = "toUserProfile()"/>
 </svg>
     <!-- <img [src] = "_imagePath" class = "profilePic" (click) = "toUserProfile()"> -->
-    <a class="name text-decoration-none fw-bolder pe-auto" (click) = "toUserProfile()" role="button" data-bs-toggle="button" title="View Profile"><span class="text-primary h5">{{_name | titlecase}}</span> <span class="text-danger ms-2 me-2 h3">|</span><span class="text-success">{{_email}}</span></a>
+    <a class="name text-decoration-none pe-auto" (click) = "toUserProfile()" role="button" data-bs-toggle="button" title="View Profile"><span class="text-primary h5 fw-bolder me-4">{{_name | titlecase}}</span>
+    <app-date-posted [postedDate] = "_datePosted"></app-date-posted>
+  </a>
 </div>

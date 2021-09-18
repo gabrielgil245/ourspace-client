@@ -23,11 +23,13 @@ user : User = {
   userId: 0
 }
 
+@Input()
+postedDate: any;
 
   _imagePath: string = "";
   _name: string = "";
   _email: string = "";
-
+  _datePosted: any;
 
   constructor(private router: Router ) {
 
@@ -37,6 +39,7 @@ user : User = {
     this._name = this.user.username;
     this._imagePath= this.user.profilePic;
     this._email = this.user.email;
+    this._datePosted = this.postedDate;
   }
 
   toUserProfile(){
