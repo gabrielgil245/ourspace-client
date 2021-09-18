@@ -51,21 +51,23 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     private createComment: CreateCommentService ) { 
     setTimeout(() =>{
       this.likesObserver = this.getAllLikesByUser.getAllLikesByUserId(this._loggedInUserID).subscribe(like =>{
-        for(let given of like){
-           if(this._postID == given.post.postId)
-           {
-              this.liked = true;
-              this._innerText = "Liked";
-              break;
-           }
-           this._innerText = "Like";
-           this.liked = false;
+        if(like === null){
+          this._innerText = "Like";
+          this.liked = false;
+        }
+        else{
+          for(let given of like){
+            if(this._postID == given.post.postId)
+            {
+                this.liked = true;
+                this._innerText = "Liked";
+                break;
+            }
+            this._innerText = "Like";
+            this.liked = false;
+            }
         };
       })
-      if(this.liked == null){
-        this._innerText = "Like";
-        this.liked = false;
-      }
     },50)
     setTimeout(() => this.getAllLikesForPost(), 75)
     setTimeout(() => this.getAllCommentsForPost(), 75)
@@ -144,6 +146,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
 
 
   open(content: any) {
+    this.returnLikes();
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
