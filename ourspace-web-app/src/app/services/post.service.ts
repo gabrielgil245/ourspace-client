@@ -8,7 +8,7 @@ export class PostService {
 
   constructor(private httpCli: HttpClient) { }
 
-  getPostsByUserAndPageNumber(userId: number, pageNumber: number) {
-    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/${userId}/${pageNumber}`, { withCredentials: true });
+  getPostsByUserAndPageNumber(username: string, pageNumber: number) {
+    return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/${username}/${pageNumber}`, { withCredentials: true });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { GetAllPostsByPageService } from 'src/app/services/get-all-posts-by-page/get-all-posts-by-page.service';
@@ -15,6 +16,7 @@ export class PostComponent implements OnInit, OnChanges {
 
   post: any = [];
   liked:boolean = false;
+  _usernameParam: string = "";
 
   observer: Subscription = new Subscription;
 
@@ -26,7 +28,8 @@ export class PostComponent implements OnInit, OnChanges {
 
   constructor(
     private getAllPostsByPage: GetAllPostsByPageService,
-    private postService: PostService) {
+    private postService: PostService,
+    private route: ActivatedRoute) {
     
   }
 
@@ -35,9 +38,24 @@ export class PostComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void{
-    this.observer = this.getAllPostsByPage.getPosts(this._pageNumber).subscribe(data =>{
-      this.post = data;   /* gets the post based on page number */
+    this.observer = this.route.queryParams.subscribe(params => {
+      this._usernameParam = params['username'];
     })
+    console.log(this._usernameParam);
+
+    //For User Profile Feed
+    if(this._usernameParam != undefined) {
+      this.observer = this.postService.getPostsByUserAndPageNumber(this._usernameParam, this._pageNumber).subscribe(post => {
+        this.post = post;
+      })
+    }
+    //For Dashboard Feed
+    if(this._usernameParam == undefined) {
+      this.observer = this.getAllPostsByPage.getPosts(this._pageNumber).subscribe(data => {
+        this.post = data;   /* gets the post based on page number */
+      })
+    }
+    
   }
 
   posts(): Array<Post> {
