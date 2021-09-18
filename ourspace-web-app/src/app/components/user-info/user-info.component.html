@@ -1,12 +1,12 @@
-<div id = "profile-info">
-  <svg width="100" height="100">
+<div id = "profile-info" class="border-bottom border-2 mb-2">
+  <svg width="100" height="100" >
   <defs>
-    <clipPath id="circleView">
-        <circle cx="40" cy="40" r="40" fill="#3333ff" />
+    <clipPath id="circleView"  class=" border border-primary">
+        <circle cx="40" cy="40" r="40" fill="#3333ff" class=" border border-primary"/>
     </clipPath>
 </defs>
   <image [attr.href]="_imagePath" height="80" clip-path="url(#circleView)" (click) = "toUserProfile()"/>
 </svg>
     <!-- <img [src] = "_imagePath" class = "profilePic" (click) = "toUserProfile()"> -->
-    <a class="name " (click) = "toUserProfile()">{{_name}}</a>
+    <a class="name text-decoration-none fw-bolder pe-auto" (click) = "toUserProfile()" role="button" data-bs-toggle="button" title="View Profile"><span class="text-primary h5">{{_name | titlecase}}</span> <span class="text-danger ms-2 me-2 h3">|</span><span class="text-success">{{_email}}</span></a>
 </div>

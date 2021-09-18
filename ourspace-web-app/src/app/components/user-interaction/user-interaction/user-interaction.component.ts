@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { GetAllLikesByPostService } from 'src/app/services/get-all-likes-by-post/get-all-likes-by-post.service';
 import { GetAllLikesByUserService } from 'src/app/services/get-all-likes-by-user/get-all-likes-by-user.service';
 import { ToggleLikeService } from 'src/app/services/toggleLike/toggle-like.service';
-import {NgbModal, ModalDismissReasons} 
+import {NgbModal, ModalDismissReasons}
       from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -32,23 +32,23 @@ export class UserInteractionComponent implements OnInit {
 
 
   closeResult = '';
-  
-  constructor( private getAllLikesByUser: GetAllLikesByUserService, private toggleLikes:ToggleLikeService, private getAllLikesByPost: GetAllLikesByPostService, private modalService: NgbModal ) { 
+
+  constructor( private getAllLikesByUser: GetAllLikesByUserService, private toggleLikes:ToggleLikeService, private getAllLikesByPost: GetAllLikesByPostService, private modalService: NgbModal ) {
     setTimeout(() =>{
       this.likesObserver = this.getAllLikesByUser.getAllLikesByUserId(this._loggedInUserID).subscribe(like =>{
         for(let given of like){
            if(this._postID == given.post.postId)
            {
               this.liked = true;
-              this._innerText = "Post Liked";
+              this._innerText = "Liked";
               break;
            }
-           this._innerText = "Like Post";
+           this._innerText = "Like";
            this.liked = false;
         };
       })
       if(this.liked == null){
-        this._innerText = "Like Post";
+        this._innerText = "Like";
         this.liked = false;
       }
     },50)
@@ -62,40 +62,25 @@ export class UserInteractionComponent implements OnInit {
   getAllLikesForPost(){
     this.postLikes = this.getAllLikesByPost.getAll(this._postID).subscribe(index =>{
       this.totalLikes = index.data.length;
-      if(this.totalLikes == 1){
-        this.inner = "1 Like"
-      }
-      else{
-        this.inner = this.totalLikes + " Likes"
-      }
+      this.inner = this.totalLikes <= 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
         })
   }
 
   toggleLike(){
     this.liked = !this.liked;
     if(this.liked){
-      this._innerText = "Post Liked!";
+      this._innerText = "Liked!";
       this.toggleLikeObserver = this.toggleLikes.toggleLike(this._postID, this._loggedInUserID).subscribe(toggle =>{
       });
       this.totalLikes += 1;
-      if(this.totalLikes == 1){
-        this.inner = "1 Like"
-      }
-      else{
-        this.inner = this.totalLikes + " Likes"
-      }
-    } 
+      this.inner = this.totalLikes <= 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
+    }
     else{
-      this._innerText = "Like Post";
+      this._innerText = "Like";
       this.toggleLikes.toggleLike(this._postID, this._loggedInUserID).subscribe(toggle =>{
       });
       this.totalLikes -= 1;
-      if(this.totalLikes == 1){
-        this.inner = "1 Like"
-      }
-      else{
-        this.inner = this.totalLikes + " Likes"
-      }
+      this.inner = this.totalLikes <= 1 ? this.totalLikes + " Like" : this.totalLikes + " Likes";
     }
   }
 
@@ -110,11 +95,11 @@ export class UserInteractionComponent implements OnInit {
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = 
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
