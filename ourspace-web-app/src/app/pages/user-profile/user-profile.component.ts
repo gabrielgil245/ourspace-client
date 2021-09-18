@@ -34,16 +34,37 @@ export class UserProfileComponent implements OnInit, OnChanges {
     private userService: UserService, 
     private router: Router, 
     private route: ActivatedRoute) {
-
-      //Retrieving value from query parameter
-      this.observer = this.route.queryParams.subscribe(params => {
-        this._usernameParam = params['username'];
-      })
-      console.log(this._usernameParam);
       
     }
 
   ngOnInit(): void {   
+    //Retrieving value from query parameter
+    this.observer = this.route.queryParams.subscribe(params => {
+      this._usernameParam = params['username'];
+    })   
+    
+    this.userService.checkSession().subscribe(user => {
+      if (user.success) {
+        if(this._usernameParam == "") {
+          this.user = {
+            userId: user.data.userId,
+            username: user.data.username,
+            password: user.data.password,
+            firstName: user.data.firstName,
+            lastName: user.data.lastName,
+            email: user.data.email,
+            birthday: user.data.birthday,
+            aboutMe: user.data.aboutMe,
+            profilePic: user.data.profilePic
+          }
+          this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
+        }
+        
+      } else {
+        this.router.navigate([``]);
+      }
+    })  
+
     this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
       this.user = {
         userId: user.data.userId,
@@ -63,8 +84,12 @@ export class UserProfileComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(observer: SimpleChanges): void {
-    console.log("ngOnChanges");
+  ngOnChanges(): void {
+    this.observer = this.route.queryParams.subscribe(params => {
+      this._usernameParam = params['username'];
+    })
+    console.log(this._usernameParam);
+
     this.userService.getUserByUsername(this._usernameParam).subscribe(user => {
       this.user = {
         userId: user.data.userId,
