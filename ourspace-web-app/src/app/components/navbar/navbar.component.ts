@@ -81,6 +81,8 @@ export class NavbarComponent implements OnInit, OnChanges {
       console.log(user);
       if (user.success) {
         this.router.navigate([`/user-profile/`], { queryParams: { username: user.data.username } });
+      } else {
+        alert(user.message)
       }
     });
   }

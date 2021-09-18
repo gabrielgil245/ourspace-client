@@ -26,6 +26,7 @@ user : User = {
 
   _imagePath: string = "";
   _name: string = "";
+  _email: string = "";
 
 
   constructor(private router: Router ) {
@@ -35,10 +36,14 @@ user : User = {
   ngOnInit(): void {
     this._name = this.user.username;
     this._imagePath= this.user.profilePic;
+    this._email = this.user.email;
   }
 
   toUserProfile(){
-    this.router.navigate([`/user-profile?username=`+this._name]);
+    this.router.navigate([`/user-profile`], { queryParams: { username: this._name}});
   }
 
+  stylePointer(){
+
+  }
 }

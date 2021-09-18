@@ -62,7 +62,7 @@ export class UserService {
     return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/forgot-password/${email}`, {withCredentials: true});
   }
 
-  editProfile(firstName: string, lastName: string, birthday: any, aboutMe: string, profilePic: any){
+  editProfile(firstName: string, lastName: string, birthday: any, aboutMe: string, profilePic?: any){
     return this.httpCli.patch<any>("http://localhost:9000/ourspaceserver/api/user",{
       firstName: firstName,
       lastName: lastName,

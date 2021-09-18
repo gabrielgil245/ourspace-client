@@ -1,9 +1,16 @@
-<form class = "signUpContainer">
-    <div>
-    <textarea [(ngModel)]="_post_text_content" placeholder="Post Content" class = "userInput" id = "textContent" name="text"></textarea>
-    <div class = "userInput">Select Picture (Optional)</div>
-    <img [src] = "_imgURL" id = image>
-    <input #file type = "file" accept="image/*" class = "userInput" (change) = "fileSelected($event)">
-    <button id= "submitButton" (click) = "submit()" routerLink = "/dashboard">Submit</button>
-    </div>
-    </form>
+<div id="create-post-container">
+  <form class="form-container shadow-lg">
+      <div>
+        <h3>Create Post</h3>
+          <textarea [(ngModel)]="_post_text_content" placeholder="Post Content" class="userInput" id="textContent" name="text" height="150px"></textarea>
+          <div class="userInput"></div>
+
+          <div class = "text-center" id="image-container">
+            <h5>Select Photo (Optional)</h5>
+            <img [src] = "_imgURL" id="image" alt="{{_imgURL}}">
+            <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
+        </div>
+          <button class="btn btn-primary" id="submitButton" (click)="submit()" routerLink="/dashboard">Submit</button>
+      </div>
+  </form>
+</div>
