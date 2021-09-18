@@ -9,9 +9,6 @@ export class CreateCommentService {
   constructor(private httpCli: HttpClient) { }
 
   postComment(comment:string, postId: number, userId:number){
-    console.log(comment);
-    console.log(postId);
-    console.log(userId);
     return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/comment", {
       user: {
         userId: userId

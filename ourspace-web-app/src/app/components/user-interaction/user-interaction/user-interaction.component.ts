@@ -70,6 +70,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     setTimeout(() => this.getAllLikesForPost(), 75)
     setTimeout(() => this.getAllCommentsForPost(), 75)
     setTimeout(() => this.returnComments(), 75)
+    setTimeout(() => this.returnLikes(), 75)
   }
   ngOnDestroy(): void {
     this.postComments.unsubscribe();
@@ -123,7 +124,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
   returnLikes() : Array<any>{ //returns the list of likes to display who liked the post
     this.postLikes = this.getAllLikesByPost.getAll(this._postID).subscribe(index =>{
       this.likes = index});
-    return this.likes.data;
+    return this.likes;
   }
   
   returnComments() : Array<any>{ //returns the list of comments to display when comments is clicked
@@ -136,6 +137,8 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     this.submitCommentData = this.createComment.postComment(this._comment, this._postID, this._loggedInUserID).subscribe(data =>{
       console.log(data);
     });
+    this._comment = "";
+    this.getAllCommentsForPost();
     this.returnComments();
   }
 
