@@ -7,7 +7,7 @@
 
           <div class = "text-center" id="image-container">
             <h5>Select Photo (Optional)</h5>
-            <img [src] = "_imgURL" id="image" alt="{{_imgURL}}">
+            <img class="img-responsive d-flex rounded mt-1" [src]="_imgURL" width="100%" alt="{{_imgURL}}">
             <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
         </div>
           <button class="btn btn-primary" id="submitButton" (click)="submit()" routerLink="/dashboard">Submit</button>
