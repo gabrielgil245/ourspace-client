@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons}
 import { GetCommentsService } from 'src/app/services/getComments/get-comments.service';
 import { CreateCommentService } from 'src/app/services/create-comment/create-comment.service';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-interaction',
@@ -18,7 +19,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
 
 
   liked!:boolean;
-  _innerText! : string;
+  _innerText : string = "Like";;
   likes: any = [];
   likesObserver: Subscription = new Subscription;
   toggleLikeObserver: Subscription = new Subscription;
@@ -43,7 +44,9 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
 
   closeResult = '';
 
-  constructor( private getAllLikesByUser: GetAllLikesByUserService,
+  constructor(
+    private router: Router,
+    private getAllLikesByUser: GetAllLikesByUserService,
     private toggleLikes:ToggleLikeService,
     private getAllLikesByPost: GetAllLikesByPostService,
     private modalService: NgbModal,
@@ -74,6 +77,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     setTimeout(() => this.returnComments(), 75)
     setTimeout(() => this.returnLikes(), 75)
   }
+
   ngOnDestroy(): void {
     this.postComments.unsubscribe();
     this.postLikes.unsubscribe();
@@ -127,6 +131,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
   returnComments() : Array<any>{ //returns the list of comments to display when comments is clicked
      this.postComments = this.getComments.getCommentsForPost(this._postID).pipe(take(1)).subscribe(index =>{
       this.comments = index});
+      console.log(this.comments)
     return this.comments;
   }
 
@@ -137,6 +142,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     this._comment = "";
     setTimeout(() => this.getAllCommentsForPost(), 150)
     setTimeout(() => this.returnComments(), 200)
+    this.getAllCommentsForPost();
   }
 
 
@@ -171,4 +177,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     });
   }
 
+  toUserProfile(_username: string){
+    this.router.navigate([`/user-profile`], { queryParams: { username: _username}});
+  }
 }
