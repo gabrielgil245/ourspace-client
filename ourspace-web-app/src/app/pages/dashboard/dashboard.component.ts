@@ -24,6 +24,10 @@ export class DashboardComponent implements OnInit {
         this.router.navigate([``]);
       }
     })
+    if (location.search.indexOf("reload=true") != -1) {
+      // refresh the page, but no "reload" this time
+      location.href = "/dashboard";
+    }
   }
 
   nextPage(){

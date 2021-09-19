@@ -84,7 +84,7 @@ export class EditProfileComponent implements OnInit {
         })
         this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
     }
-    this.router.navigate([`/`]);
+    setTimeout(() => this.router.navigate([`/dashboard`] , { queryParams: { reload: "true" } }), 3000);
   }
 
   triggerModal(content: any) {
