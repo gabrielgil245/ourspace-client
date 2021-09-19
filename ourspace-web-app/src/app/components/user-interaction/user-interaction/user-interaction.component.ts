@@ -143,6 +143,7 @@ export class UserInteractionComponent implements OnInit, OnDestroy {
     setTimeout(() => this.getAllCommentsForPost(), 150)
     setTimeout(() => this.returnComments(), 200)
     this.getAllCommentsForPost();
+
   }
 
 

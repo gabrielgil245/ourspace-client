@@ -58,18 +58,18 @@
 <ng-template #comment let-modal>
   <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Comments</h4>
-      <button type="button" class="btn btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="btn btn-danger close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">X</span>
     </button>
 </div>
   <div class="modal-body">
       <form>
-          <div class="">
+          <div class="m-2">
             <div>
-              <textarea [(ngModel)]="_comment" type="text" placeholder="Add Comment" name="comment_decription" rows="3" class="w-100 rounded"></textarea>
+              <textarea [(ngModel)]="_comment" type="text" placeholder="Add Comment" name="comment_decription" rows="3" class="w-100 rounded p-2"></textarea>
             </div>
             <div>
-              <button class="mt-3 btn btn-success w-100" (click)="submitComment()">Submit</button>
+              <button class="mt-3 btn btn-success w-100" (click)="submitComment()" (click)="modal.dismiss('Cross click')">Submit</button>
             </div>
 
           </div>

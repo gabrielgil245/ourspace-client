@@ -30,11 +30,11 @@ export class PostComponent implements OnInit, OnChanges {
     private getAllPostsByPage: GetAllPostsByPageService,
     private postService: PostService,
     private route: ActivatedRoute) {
-    
+
   }
 
   ngOnInit(): void {
-  
+
   }
 
   ngOnChanges(): void{
@@ -55,7 +55,7 @@ export class PostComponent implements OnInit, OnChanges {
         this.post = data;   /* gets the post based on page number */
       })
     }
-    
+
   }
 
   posts(): Array<Post> {
