@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
+
 
   pageNumber:number=1;
   _userId:number = 0;
