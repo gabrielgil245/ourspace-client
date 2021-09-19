@@ -1,16 +1,21 @@
 <div id="create-post-container">
-  <form class="form-container shadow-lg">
-      <div>
-        <h3>Create Post</h3>
-          <textarea [(ngModel)]="_post_text_content" placeholder="Post Content" class="userInput" id="textContent" name="text" height="150px"></textarea>
-          <div class="userInput"></div>
+  <form class="form-container shadow-lg"  (focus)="showButton()">
 
-          <div class = "text-center" id="image-container">
-            <h5>Select Photo (Optional)</h5>
-            <img class="img-responsive d-flex rounded mt-1" [src]="_imgURL" width="100%" alt="{{_imgURL}}">
-            <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change) = "fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
+      <div>
+          <h3 class="text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+            Create Post
+          </h3>
+          <textarea [(ngModel)]="_post_text_content" placeholder="Post Content" [attr.class]="_textInput" id="textContent" name="text" [rows]="_rows" (focus)="showButton()" ></textarea>
+          <div [attr.class]="_classDisplay" id="image-container">
+              <h5>Select Photo (Optional)</h5>
+              <img class="img-responsive d-flex rounded mt-1" [src]="_imgURL" width="100%" alt="{{_imgURL}}">
+              <input #file type="file" id="upload" accept="image/*" class="filestyle m-2" (change)="fileSelected($event)" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Upload Photo">
+            <button class="btn btn-primary" id="submitButton" (click)="submit()" routerLink="/dashboard">Submit</button>
         </div>
-          <button class="btn btn-primary" id="submitButton" (click)="submit()" routerLink="/dashboard">Submit</button>
       </div>
   </form>
 </div>

@@ -12,7 +12,7 @@ import { GetAllPostsByUserService } from 'src/app/services/get-all-posts-by-user
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private uploadFileService: UploadFileService, private userServices: UserService, private createPostService: CreatePostService, private getAllPostsByUserService: GetAllPostsByUserService) { 
+  constructor(private uploadFileService: UploadFileService, private userServices: UserService, private createPostService: CreatePostService, private getAllPostsByUserService: GetAllPostsByUserService) {
   }
 
   _post_text_content: string = "";
@@ -24,6 +24,10 @@ export class CreatePostComponent implements OnInit {
   imageName : string = "";
   totalPosts: number = 0;
   imagePath:string = "";
+  _classDisplay: string = "text-center show";
+  _textInput: string = "rounded-pill";
+  _rows: string = "1";
+
 
   ngOnInit(): void {
     this.observer = this.userServices.checkSession().subscribe(inSession =>{
@@ -55,18 +59,32 @@ export class CreatePostComponent implements OnInit {
       this.imageName = "";
     this.createPostService.createPost(this._post_text_content, this.user, this.imageName).subscribe((data: any) => {
       console.log(data)
-      }) 
+      })
     }
      else{ /* if image provided, sends the link to database */
       this.imageName = this.user.username + (this.totalPosts + 1);
       this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
       this.createPostService.createPost(this._post_text_content, this.user, this.imagePath).subscribe((data: any) => {
         console.log(data)
-        }) 
+        })
       this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
       this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imageName);
      }
-    }  
+     this.hideButton();
+    }
+
+    showButton(){
+      this._classDisplay = "text-center show";
+      this._textInput = "rounded";
+      this._rows = "5";
+    }
+
+    hideButton(){
+      this._classDisplay = "text-center visually-show"
+      this._textInput = "rounded-pill";
+      this._rows = "1";
+      this._post_text_content = "";
+    }
   }
 
 

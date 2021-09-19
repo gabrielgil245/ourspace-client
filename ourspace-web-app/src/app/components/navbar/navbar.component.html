@@ -4,8 +4,8 @@
       <a class="navbar-brand align-self-center mb-3" id="site-brand" routerLink="">OurSpace</a>
     </div>
 
-    <form class="form-container d-flex align-self-center px-2">
-      <input type="text" [(ngModel)]="_searchResult" name="search" id="search-input" placeholder="Search User by Username" class="px-2 mx-2">
+    <form class="form-container d-flex align-self-center px-4">
+      <input type="text" [(ngModel)]="_searchResult" name="search" id="search-input" placeholder="Search User by Username" class="px-4">
       <button class="btn btn-dark" type="submit" (click)="searchUsername()">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="" viewBox="0 0 16 16" id="seach-svg">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -30,7 +30,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="orange" class="bi bi-bell" viewBox="0 0 16 16">
               <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
             </svg>
-            <a class="nav-link" href="#">Notification</a>
+            <a class="nav-link" routerLink = "/dashboard">Notification
+              <!-- <span class=" top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                99+
+                <span class="visually-hidden">unread messages</span>
+              </span> -->
+            </a>
           </div>
 
         </li>
@@ -99,7 +104,7 @@
                   <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
                   <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg>
-                <a class="dropdown-item" routerLink="/reset-password/{{_email}}">Reset Password</a>
+                <a class="dropdown-item" routerLink="{{_resetPasswordLink}}">Reset Password</a>
               </div>
 
               <div class="dropdown-divider"></div>

@@ -15,7 +15,8 @@ import { User } from 'src/app/models/User';
 export class NavbarComponent implements OnInit, OnChanges {
 
   _classDisplay: string = "d-none";
-  _email: string = "";
+  _resetPasswordLink: string = "";
+
   @Input()
   _searchResult: string = "";
   @Input()
@@ -34,7 +35,7 @@ export class NavbarComponent implements OnInit, OnChanges {
   observer: Subscription = new Subscription;
 
   constructor(private httpCli: HttpClient, private userService: UserService, private generic: GenericService, private router: Router ) {
-    
+
   }
 
   ngOnChanges(): void {
@@ -60,6 +61,7 @@ export class NavbarComponent implements OnInit, OnChanges {
             aboutMe: user.data.aboutMe,
             profilePic: user.data.profilePic
           }
+          this._resetPasswordLink = "/reset-password/" + user.data.email;
         })
         console.log(this.user);
       }
