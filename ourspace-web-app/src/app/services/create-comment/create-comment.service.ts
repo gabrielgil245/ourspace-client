@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GenericService } from '../generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateCommentService {
 
-  constructor(private httpCli: HttpClient) { }
+  constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   postComment(comment:string, postId: number, userId:number){
-    return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/comment", {
+    return this.httpCli.post<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/comment`, {
       user: {
         userId: userId
             },

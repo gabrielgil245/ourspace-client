@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/services/upload-file/upload-file.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormsModule } from '@angular/forms';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +26,7 @@ export class SignUpComponent implements OnInit {
   success:boolean = false;
   profilePic: string = "";
 
-  constructor(private uploadFileService:UploadFileService, private userService: UserService, private router: Router) { }
+  constructor(private uploadFileService:UploadFileService, private userService: UserService, private router: Router, private genericService: GenericService) { }
 
   ngOnInit(): void {
   }
@@ -71,7 +72,7 @@ export class SignUpComponent implements OnInit {
         if (data.success) {
           this.success = data.success
           console.log(data);
-          this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+          this.uploadFileService.uploadFile(`${this.genericService.getLocalServerDomain()}/ourspaceserver/s3/signup`,this.selectedFile, this._username);
 
           // If successfully registered then login immediately
           this.userService.userLogin(this._username, this._password).subscribe(data => {

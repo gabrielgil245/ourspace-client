@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
 import { CreatePostService } from 'src/app/services/create-post/create-post.service';
 import { GetAllPostsByUserService } from 'src/app/services/get-all-posts-by-user/get-all-posts-by-user.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-create-post',
@@ -12,7 +13,7 @@ import { GetAllPostsByUserService } from 'src/app/services/get-all-posts-by-user
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(private uploadFileService: UploadFileService, private userServices: UserService, private createPostService: CreatePostService, private getAllPostsByUserService: GetAllPostsByUserService) {
+  constructor(private uploadFileService: UploadFileService, private userServices: UserService, private createPostService: CreatePostService, private getAllPostsByUserService: GetAllPostsByUserService, private genericService: GenericService) {
   }
 
   _post_text_content: string = "";
@@ -68,7 +69,7 @@ export class CreatePostComponent implements OnInit {
         console.log(data)
         })
       this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
-      this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/post',this.selectedFile, this.imageName);
+      this.uploadFileService.uploadFile(`${this.genericService.getLocalServerDomain()}/ourspaceserver/s3/post`,this.selectedFile, this.imageName);
      }
      this.hideButton();
     }

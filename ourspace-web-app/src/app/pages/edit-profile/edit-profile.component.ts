@@ -5,6 +5,7 @@ import { UploadFileService } from 'src/app/services/upload-file/upload-file.serv
 import { UserService } from 'src/app/services/user.service';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -32,7 +33,8 @@ export class EditProfileComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private modalService: NgbModal,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe, 
+              private genericService: GenericService) { }
 
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class EditProfileComponent implements OnInit {
           this.success = data.success;
           console.log(data);
         })
-        this.uploadFileService.uploadFile('http://localhost:9000/ourspaceserver/s3/signup',this.selectedFile, this._username);
+        this.uploadFileService.uploadFile(`${this.genericService.getLocalServerDomain()}/ourspaceserver/s3/signup`,this.selectedFile, this._username);
     }
     setTimeout(() => this.router.navigate([`/dashboard`] , { queryParams: { reload: "true" } }), 3000);
   }

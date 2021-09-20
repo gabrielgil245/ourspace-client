@@ -10,12 +10,12 @@
   margin:20px;
   padding: 20px;
   text-align: center;
-  width: 600px;
+  width: 60%;
   box-shadow: 0 0  20px  grey ;
 }
 
 .post-image{
-  width: 400px;
+  width: 100%;
 
   /* display: flex;
   justify-content: center;

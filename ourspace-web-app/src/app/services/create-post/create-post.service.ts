@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GenericService } from '../generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreatePostService {
 
-  constructor(private httpCli: HttpClient) { }
+  constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   createPost(textContent:string, user:any, imagePath: string){
     console.log(user);
-    return this.httpCli.post<any>("http://localhost:9000/ourspaceserver/api/post",{
+    return this.httpCli.post<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/post`,{
       postSubmitted: new Date().toJSON(),
       postDescription: textContent,
       user: {

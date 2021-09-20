@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GenericService } from '../generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetAllPostsByPageService {
 
-  constructor(private httpCli: HttpClient) { }
+  constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
 getPosts(pageNumber: number){
-  return this.httpCli.get<any>(`http://localhost:9000/ourspaceserver/api/post/?pageNumber=${pageNumber}`, {withCredentials: true});
+  return this.httpCli.get<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/post/?pageNumber=${pageNumber}`, {withCredentials: true});
 }
 }
