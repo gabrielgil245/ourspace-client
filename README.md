@@ -2,8 +2,7 @@
 ## Project Description
 In this social network, everyone is friends with everyone. This application is designed to handle multimedia consuming S3.
 
-Instructions:
-When cloning, be sure to enter 'npm install' in the Visual Studio Code terminal with the openspace-web-app folder opened.
+OurSpace Social Media Server/Backend: https://github.com/gabrielgil245/ourspace-server
 
 ## Technologies Used
 - Angular 2+
