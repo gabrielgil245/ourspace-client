@@ -10,6 +10,6 @@ export class GetAllPostsByUserService {
   constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   getAllPosts(userId: number){
-    return this.httpCli.get<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/post/${userId}`, {withCredentials: true});
+    return this.httpCli.get<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/post/${userId}`, {withCredentials: true});
   }
 }

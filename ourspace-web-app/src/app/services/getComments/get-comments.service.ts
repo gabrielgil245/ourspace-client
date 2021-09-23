@@ -10,6 +10,6 @@ export class GetCommentsService {
   constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   getCommentsForPost(postId:number){
-    return this.httpCli.get<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/comment/${postId}`, {withCredentials: true})
+    return this.httpCli.get<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/comment/${postId}`, {withCredentials: true})
   }
 }

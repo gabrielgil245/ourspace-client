@@ -10,6 +10,6 @@ export class GetAllLikesByUserService {
   constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   getAllLikesByUserId(userId:number){
-    return this.httpCli.get<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/like/${userId}`, {withCredentials: true});
+    return this.httpCli.get<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/like/${userId}`, {withCredentials: true});
   }
 }

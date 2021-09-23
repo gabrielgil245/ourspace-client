@@ -10,7 +10,7 @@ export class CreateCommentService {
   constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   postComment(comment:string, postId: number, userId:number){
-    return this.httpCli.post<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/comment`, {
+    return this.httpCli.post<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/comment`, {
       user: {
         userId: userId
             },

@@ -11,7 +11,7 @@ export class CreatePostService {
 
   createPost(textContent:string, user:any, imagePath: string){
     console.log(user);
-    return this.httpCli.post<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/post`,{
+    return this.httpCli.post<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/post`,{
       postSubmitted: new Date().toJSON(),
       postDescription: textContent,
       user: {

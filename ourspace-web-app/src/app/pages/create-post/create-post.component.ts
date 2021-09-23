@@ -64,12 +64,12 @@ export class CreatePostComponent implements OnInit {
     }
      else{ /* if image provided, sends the link to database */
       this.imageName = this.user.username + (this.totalPosts + 1);
-      this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
+      this.imagePath = `https://s3.${this.genericService.getAWSRegion()}.amazonaws.com/${this.genericService.getS3Bucket()}/${this.genericService.getS3PostFolder()}/` + this.imageName + ".PNG"
       this.createPostService.createPost(this._post_text_content, this.user, this.imagePath).subscribe((data: any) => {
         console.log(data)
         })
-      this.imagePath = "https://s3.us-east-2.amazonaws.com/project2.rev/postpics/" + this.imageName + ".PNG"
-      this.uploadFileService.uploadFile(`${this.genericService.getLocalServerDomain()}/ourspaceserver/s3/post`,this.selectedFile, this.imageName);
+      this.imagePath = `https://s3.${this.genericService.getAWSRegion()}.amazonaws.com/${this.genericService.getS3Bucket()}/${this.genericService.getS3PostFolder()}/` + this.imageName + ".PNG"
+      this.uploadFileService.uploadFile(`${this.genericService.getServerDomain()}/ourspaceserver/s3/post`,this.selectedFile, this.imageName);
      }
      this.hideButton();
     }

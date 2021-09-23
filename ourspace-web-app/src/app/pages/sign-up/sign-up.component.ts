@@ -67,12 +67,12 @@ export class SignUpComponent implements OnInit {
       })
     } else if(this.added_pic){
       /* If they include a profile pic, includes the link */
-      this.profilePic = "https://s3.us-east-2.amazonaws.com/project2.rev/profilepics/" + this._username + ".PNG"
+      this.profilePic = `https://s3.${this.genericService.getAWSRegion()}.amazonaws.com/${this.genericService.getS3Bucket()}/${this.genericService.getS3ProfileFolder()}/` + this._username + ".PNG"
       this.userService.createNew(this._username, this._password, this._first_name, this._last_name, this._email, this._birthday, this._about_me, this.profilePic).subscribe((data: any) => {
         if (data.success) {
           this.success = data.success
           console.log(data);
-          this.uploadFileService.uploadFile(`${this.genericService.getLocalServerDomain()}/ourspaceserver/s3/signup`,this.selectedFile, this._username);
+          this.uploadFileService.uploadFile(`${this.genericService.getServerDomain()}/ourspaceserver/s3/signup`,this.selectedFile, this._username);
 
           // If successfully registered then login immediately
           this.userService.userLogin(this._username, this._password).subscribe(data => {

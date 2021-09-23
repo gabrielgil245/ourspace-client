@@ -10,6 +10,6 @@ export class PostService {
   constructor(private httpCli: HttpClient, private genericService: GenericService) { }
 
   getPostsByUserAndPageNumber(username: string, pageNumber: number) {
-    return this.httpCli.get<any>(`${this.genericService.getLocalServerDomain()}/ourspaceserver/api/post/${username}/${pageNumber}`, { withCredentials: true });
+    return this.httpCli.get<any>(`${this.genericService.getServerDomain()}/ourspaceserver/api/post/${username}/${pageNumber}`, { withCredentials: true });
   }
 }
