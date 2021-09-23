@@ -48,12 +48,14 @@ Todo-List:
 ### Roel Crodua
   - 
 ### Gabriel Gil
-  - 
+  - Assembled page layouts for when the user forgot their password, and when the user visits a profile page.
+  - Devised the search bar to navigate the user to the a user's profile page based using a user's username.
+  - Populated the user profile page with posts based on query params.
 ### Jack Gildea
-  -  Persisted new user information to the database.
-  -  Retrieved data from database to populate user dashboard of posts.
-  -  Added the functionality to create a post by the user with the option of including an image in the post.
-  -  Utilized AWS S3 services to save images used for image posts and profile pictures.
-  -  Implemented the ability to "Like" a post and updated the total likes in real time.
-  -  Utilized Modal to display which users had "Liked" a post.
-  -  Promoted increased user interaction with the ability to add comments.
+  - Persisted new user information to the database.
+  - Retrieved data from database to populate user dashboard of posts.
+  - Added the functionality to create a post by the user with the option of including an image in the post.
+  - Utilized AWS S3 services to save images used for image posts and profile pictures.
+  - Implemented the ability to "Like" a post and updated the total likes in real time.
+  - Utilized Modal to display which users had "Liked" a post.
+  - Promoted increased user interaction with the ability to add comments.
