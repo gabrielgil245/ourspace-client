@@ -46,7 +46,11 @@ Todo-List:
 
 ## Contributors
 ### Roel Crodua
-  - 
+  - Assembled the edit-user info and user-login page components.
+  - Developed the navbar component, while implementing structural binding, based if the user was logged in or not.
+  - Developed the reset and forgot password components, including its display and functionality.
+  - Designed most of the display using Bootstrap and CSS.
+Added posted date to display along with the post.
 ### Gabriel Gil
   - Assembled page layouts for when the user forgot their password, and when the user visits a profile page.
   - Devised the search bar to navigate the user to the a user's profile page based using a user's username.
